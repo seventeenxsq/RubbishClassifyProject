@@ -53,6 +53,7 @@ public class SearchFragment extends Fragment implements AppBarLayout.OnOffsetCha
     private void setupSearchBar() {
         mSearchView.setOnQueryChangeListener(new FloatingSearchView.OnQueryChangeListener() {
 
+            //显示搜索建议
             @Override
             public void onSearchTextChanged(String oldQuery, final String newQuery) {
 
@@ -116,7 +117,8 @@ public class SearchFragment extends Fragment implements AppBarLayout.OnOffsetCha
             public void onSuggestionClicked(final SearchSuggestion searchSuggestion) {
 
                 RubbishSuggestion rubbishSuggestion = (RubbishSuggestion) searchSuggestion;
-                Log.d(TAG, "onSuggestionClicked: dddd " + rubbishSuggestion.getBody());
+                DataHelper.changeHistory(rubbishSuggestion);
+//                Log.d(TAG, "onSuggestionClicked: dddd " + rubbishSuggestion.getBody());
                 //在这里获取选择的结果之后，再上传到服务器查询是什么类型的垃圾
                 Log.d(TAG, "onSuggestionClicked()");
 
@@ -145,6 +147,7 @@ public class SearchFragment extends Fragment implements AppBarLayout.OnOffsetCha
             public void onFocus() {
 
                 //show suggestions when search bar gains focus (typically history suggestions)
+                //显示搜索历史，所以修改getHistory就行
                 mSearchView.swapSuggestions(DataHelper.getHistory(getActivity(), 5));
 
                 Log.d(TAG, "onFocus()");
@@ -181,16 +184,16 @@ public class SearchFragment extends Fragment implements AppBarLayout.OnOffsetCha
                 String textColor = mIsDarkSearchTheme ? "#ffffff" : "#000000";
                 String textLight = mIsDarkSearchTheme ? "#bfbfbf" : "#787878";
 
-                if (rubbishSuggestion.getIsHistory()) {
-                    leftIcon.setImageDrawable(ResourcesCompat.getDrawable(getResources(),
-                            R.drawable.ic_history_black_24dp, null));
-
-                    Util.setIconColor(leftIcon, Color.parseColor(textColor));
-                    leftIcon.setAlpha(.36f);
-                } else {
-                    leftIcon.setAlpha(0.0f);
-                    leftIcon.setImageDrawable(null);
-                }
+//                if (rubbishSuggestion.getIsHistory()) {
+//                    leftIcon.setImageDrawable(ResourcesCompat.getDrawable(getResources(),
+//                            R.drawable.ic_history_black_24dp, null));
+//
+//                    Util.setIconColor(leftIcon, Color.parseColor(textColor));
+//                    leftIcon.setAlpha(.36f);
+//                } else {
+//                    leftIcon.setAlpha(0.0f);
+//                    leftIcon.setImageDrawable(null);
+//                }
 
                 textView.setTextColor(Color.parseColor(textColor));
                 String text = rubbishSuggestion.getBody()
