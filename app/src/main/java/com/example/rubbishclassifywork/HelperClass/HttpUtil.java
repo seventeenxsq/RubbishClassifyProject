@@ -1,6 +1,4 @@
 package com.example.rubbishclassifywork.HelperClass;
-
-
 import android.util.Log;
 
 import java.io.BufferedReader;
@@ -17,7 +15,6 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 public class HttpUtil {
-
     public static String doPost(URL url) {
         HttpURLConnection connection = null;
         BufferedReader reader = null;
