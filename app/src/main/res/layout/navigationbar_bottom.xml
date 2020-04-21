@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="50dp"
+    android:layout_alignParentBottom="true"
+    android:background="#ffffff"
+    android:orientation="horizontal" >
+
+    <!-- ImageButton没加android:clickable="false"时，点击下方的ImageButton不会改变页面
+    ，点击TextView才会改变页面，这是因为每个tab是一个LinearLayout，每个LinearLayout都有
+    一个ImageButton，当点击ImageButton位置时，点击事件首先会到LinearLayout上，LinearLayout
+    会去判断，发现内部有一个ImageButton可以解决点击事件，所以就把点击事件交给ImageButton，
+    而ImageButton又没有写点击事件，所以点击事件就失效了。-->
+    <LinearLayout
+        android:id="@+id/tab_camera"
+        android:layout_width="0dp"
+        android:layout_height="fill_parent"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="vertical" >
+
+        <ImageButton
+
+            android:id="@+id/btn_1"
+            android:layout_width="60dp"
+            android:layout_height="32dp"
+
+            android:clickable="false"
+             />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="识别"
+            android:textColor="#6A6879" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/tab_search"
+        android:layout_width="0dp"
+        android:layout_height="fill_parent"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="vertical" >
+
+        <ImageButton
+            android:id="@+id/btn_2"
+            android:layout_width="60dp"
+            android:layout_height="32dp"
+
+            android:clickable="false"
+             />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="搜索"
+            android:textColor="#6A6879" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/tab_play"
+        android:layout_width="0dp"
+        android:layout_height="fill_parent"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="vertical" >
+
+        <ImageButton
+            android:id="@+id/btn_3"
+            android:layout_width="60dp"
+            android:layout_height="32dp"
+
+            android:clickable="false"
+             />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="答题"
+            android:textColor="#6A6879" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/tab_me"
+        android:layout_width="0dp"
+        android:layout_height="fill_parent"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="vertical" >
+
+        <ImageButton
+            android:id="@+id/btn_4"
+            android:layout_width="60dp"
+            android:layout_height="32dp"
+
+            android:clickable="false"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="我的"
+            android:textColor="#6A6879" />
+    </LinearLayout>
+
+</LinearLayout>

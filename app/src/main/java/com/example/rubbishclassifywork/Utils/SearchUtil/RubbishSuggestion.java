@@ -4,6 +4,7 @@ import android.os.Parcel;
 
 import com.arlib.floatingsearchview.suggestions.model.SearchSuggestion;
 
+
 public class RubbishSuggestion implements SearchSuggestion {
     private String mRubbishName;
     private boolean mIsHistory = false;
