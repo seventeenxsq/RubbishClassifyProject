@@ -29,9 +29,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        StatusBarUtil.transparencyBar(this);
-//        StatusBarUtil.BlackFontStatusBar(this.getWindow());
         setContentView(R.layout.activity_main);
+
         initView();
     }
 

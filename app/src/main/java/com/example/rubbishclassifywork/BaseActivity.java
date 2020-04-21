@@ -24,7 +24,6 @@ public class BaseActivity extends AppCompatActivity {
         Log.e(TAG, getClass().getSimpleName()+": onStart ");
     }
 
-
     @Override
     protected void onPause() {
         super.onPause();
