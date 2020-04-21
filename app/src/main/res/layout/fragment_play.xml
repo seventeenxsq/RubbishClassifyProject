@@ -1,7 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#404040">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#51a488">
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <Button
+            android:id="@+id/btn_start_dati"
+            android:layout_width="130dp"
+            android:layout_height="130dp"
+            android:background="@drawable/btn_special_disease_circle"
+            android:text="开 始"
+            android:textColor="#ffff"
+            android:textSize="30sp"
+            android:layout_gravity="center"
+            />
+
+        <id.arieridwan.lib.PageLoader
+            android:id="@+id/pageloader"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_gravity="center"
+            app:setLoadingText="正在载入..."
+            app:setTextColor="#51a488"
+            app:setLoadingAnimationMode="rotate"
+            app:setErrorText="请点击重新加载.."
+            app:setTextSize="10sp"
+            />
+
+
+    </FrameLayout>
+
+</RelativeLayout>
