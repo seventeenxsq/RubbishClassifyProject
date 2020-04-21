@@ -15,6 +15,7 @@ public class SearchActivity extends AppCompatActivity {
         setContentView(R.layout.activity_search);
 
         //在启动这个界面的时候，就跳转到搜索Fragment
+        // test this
         SearchFragment fragment = new SearchFragment();
         FragmentManager fragmentManager = SearchActivity.this.getSupportFragmentManager();
         FragmentTransaction transaction = fragmentManager.beginTransaction();
