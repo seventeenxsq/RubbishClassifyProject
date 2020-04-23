@@ -6,12 +6,59 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+    <RelativeLayout
+        android:id="@+id/rl_time_conut"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        >
+        <TextView
+            android:id="@+id/tv_question_conut"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="1/10"
+            android:layout_marginLeft="10dp"
+            android:textSize="20sp"
+            android:textColor="#363636"
+            android:layout_alignParentLeft="true"
+            />
+        <LinearLayout
+            android:id="@+id/ll_time_out"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:orientation="horizontal"
+            android:layout_marginRight="10dp"
+            >
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@mipmap/time"
+                />
+
+            <TextView
+                android:id="@+id/tv_time_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:text="00:15"
+                android:textSize="20sp"
+                android:textColor="#363636"/>
+        </LinearLayout>
+        <View
+            android:layout_below="@id/ll_time_out"
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:background="#e4e4e4"
+            />
+    </RelativeLayout>
+
     <LinearLayout
         android:id="@+id/ll_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
         android:paddingLeft="10dp"
+        android:layout_below="@id/rl_time_conut"
         android:orientation="horizontal">
 
         <TextView
@@ -19,15 +66,31 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="(单选题)"
-            android:textColor="#EE00EE"
-            android:textSize="25sp"/>
+            android:textColor="#9B30FF"
+            android:textSize="@dimen/answer_text_size"/>
         <TextView
             android:id="@+id/tv_question"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="24sp"
+            android:textSize="@dimen/answer_text_size"
             android:textColor="#363636"
             android:textStyle="bold"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_img"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/ll_title"
+        android:layout_alignParentRight="true"
+        >
+        <ImageView
+            android:id="@+id/iv_img"
+            android:layout_width="200dp"
+            android:layout_height="120dp"
+            android:src="@mipmap/huixingzhen"
+
+            />
     </LinearLayout>
 
     <RadioGroup
@@ -35,7 +98,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingLeft="10dp"
-        android:layout_below="@id/ll_title">
+        android:layout_below="@id/ll_img"
+        >
         <RadioButton
             android:id="@+id/optionA"
             android:layout_width="wrap_content"
@@ -43,104 +107,103 @@
             android:text=""
             android:paddingHorizontal="5dp"
             android:paddingVertical="5dp"
-            android:paddingTop="10dp"
+
             android:button="@drawable/optiona_radiobutton"
             android:textColor="#363636"
-            android:textSize="24sp"/>
+            android:textSize="@dimen/answer_text_size"/>
         <RadioButton
             android:id="@+id/optionB"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text=""
-            android:paddingTop="10dp"
+            android:layout_marginTop="@dimen/radiobutton_margin_size"
             android:paddingHorizontal="5dp"
             android:paddingVertical="5dp"
             android:button="@drawable/optionb_radiobtn"
             android:textColor="#363636"
-            android:textSize="24sp"/>
+            android:textSize="@dimen/answer_text_size"/>
         <RadioButton
             android:id="@+id/optionC"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text=""
-            android:paddingTop="10dp"
+            android:layout_marginTop="@dimen/radiobutton_margin_size"
             android:paddingHorizontal="5dp"
             android:paddingVertical="5dp"
             android:button="@drawable/optionc_radiobtn"
             android:textColor="#363636"
-            android:textSize="24sp"/>
+            android:textSize="@dimen/answer_text_size"/>
         <RadioButton
             android:id="@+id/optionD"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text=""
-            android:paddingTop="10dp"
+            android:layout_marginTop="@dimen/radiobutton_margin_size"
             android:paddingHorizontal="5dp"
             android:paddingVertical="5dp"
             android:button="@drawable/optiond_radiobtn"
             android:textColor="#363636"
-            android:textSize="24sp"/>
+            android:textSize="@dimen/answer_text_size"/>
     </RadioGroup>
-    <RelativeLayout
-        android:id="@+id/rl_time_conut"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_below="@id/rg_options">
-        <TextView
-            android:id="@+id/tv_question_conut"
-            android:layout_width="wrap_content"
-            android:layout_height="40dp"
-            android:text="1/10"
-            android:textSize="20sp"
-            android:textColor="#363636"
-            android:layout_alignParentLeft="true"
-            />
-        <TextView
-            android:id="@+id/tv_time_count"
-            android:layout_width="wrap_content"
-            android:layout_height="40dp"
-            android:layout_alignParentRight="true"
-            android:text="00:15"
-            android:textSize="20sp"
-            android:textColor="#363636"/>
-    </RelativeLayout>
+
+
     <RelativeLayout
         android:id="@+id/rl_explain"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/rl_time_conut"
+        android:layout_below="@id/rg_options"
         android:visibility="visible"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="20dp"
         android:layout_marginLeft="10dp">
-        <TextView
-            android:id="@+id/tv_istrue"
-            android:layout_width="match_parent"
+        <LinearLayout
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="回答正确"
-            android:textSize="24sp"
-            android:textColor="#228B22"
-            />
-        <TextView
-            android:id="@+id/tv_explain"
-            android:layout_below="@id/tv_istrue"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="解析："
-            android:textColor="#363636"
-            android:textSize="24sp"/>
+            android:orientation="horizontal">
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:src="@mipmap/earth"/>
+            <com.example.rubbishclassifywork.Fragment.BubbleLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="16dp"
+                app:background_color="#FFD700"
+                app:direction="left"
+                app:offset="-40dp"
+                app:radius="10dp"
+                app:shadow_color="#999999"
+                app:shadow_size="4dp"
+            >
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/tv_istrue"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="回答正确"
+                        android:textSize="@dimen/answer_text_size"
+                        android:textColor="#228B22"
+                        />
+                    <TextView
+                        android:id="@+id/tv_explain"
+                        android:layout_below="@id/tv_istrue"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="解析："
+                        android:textColor="#363636"
+                        android:textSize="@dimen/answer_text_size"/>
+                </RelativeLayout>
+            </com.example.rubbishclassifywork.Fragment.BubbleLayout>
+        </LinearLayout>
     </RelativeLayout>
 
-
-
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="35dp"
-        android:layout_marginLeft="10dp"
         android:orientation="horizontal">
         <Button
             android:id="@+id/btn_upload"
@@ -148,6 +211,8 @@
             android:layout_height="50dp"
             android:text="提  交"
             android:textSize="24sp"
+            android:layout_marginLeft="20dp"
+            android:layout_alignParentLeft="true"
             android:textColor="@color/white"
             android:background="@color/themegreen"
             />
@@ -155,13 +220,14 @@
             android:id="@+id/btn_next"
             android:layout_width="120dp"
             android:layout_height="50dp"
+            android:layout_alignParentRight="true"
             android:text="下一题"
-            android:layout_marginLeft="50dp"
+            android:layout_marginRight="20dp"
             android:textSize="24sp"
             android:textColor="@color/white"
             android:background="@color/themegreen"
             />
 
-    </LinearLayout>
+    </RelativeLayout>
 
 </RelativeLayout>
