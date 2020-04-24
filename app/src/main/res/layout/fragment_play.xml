@@ -3,20 +3,28 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@mipmap/cartoonearth">
+    >
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@mipmap/cartoonearth"
+            android:scaleType="centerCrop"
+            />
         <Button
             android:id="@+id/btn_start_dati"
             android:layout_width="130dp"
             android:layout_height="60dp"
-            android:background="#00B2EE"
-            android:text="开 始"
+            android:background="@drawable/btn_start_game"
+            android:typeface="monospace"
+
             android:textColor="#ffff"
             android:textSize="30sp"
-            android:layout_gravity="center"
+            android:layout_gravity="bottom|center_horizontal"
+            android:layout_marginBottom="80dp"
             />
 
         <id.arieridwan.lib.PageLoader

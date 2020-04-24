@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- 按下去的背景颜色显示效果 -->
+    <item android:drawable="@drawable/select_start" android:state_pressed="true"/>
+<!--    &lt;!&ndash; 获取焦点时背景颜色显示效果 &ndash;&gt;-->
+<!--    <item android:drawable="@drawable/btn_press" android:state_focused="true"/>-->
+    <!-- 没有任何状态下的背景颜色 -->
+    <item android:drawable="@drawable/unselect_start"/>
+
+</selector>
