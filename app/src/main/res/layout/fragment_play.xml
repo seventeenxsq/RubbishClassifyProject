@@ -14,42 +14,74 @@
             android:src="@mipmap/cartoonearth"
             android:scaleType="centerCrop"
             />
-        <Button
-            android:id="@+id/btn_start_dati"
-            android:layout_width="130dp"
-            android:layout_height="60dp"
-            android:background="@drawable/btn_start_game"
-            android:typeface="monospace"
-
-            android:textColor="#ffff"
-            android:textSize="30sp"
-            android:layout_gravity="bottom|center_horizontal"
-            android:layout_marginBottom="80dp"
-            />
-
-        <com.steelkiwi.library.SlidingSquareLoaderView
-            android:id="@+id/view"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:visibility="invisible"
-            app:sslv_corner_radius="30dp"
-            app:sslv_margin="10dp"
-            app:sslv_end_gradient_color="@color/themegreen"
-            app:sslv_start_gradient_color="@color/start_gradient_color"
-            app:sslv_background_color="#ffffff"
-            app:sslv_square_size="@dimen/square_size">
+            android:layout_height="match_parent">
 
-            <TextView
+            <LinearLayout
+                android:id="@+id/coin"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="please waiting...."
-                android:textSize="24sp"
-                android:textColor="@color/themegreen"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="30dp"
+                android:layout_marginRight="20dp"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/iv_coin"
+                    android:paddingLeft="0dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/coin"
+                    />
+                <TextView
+                    android:id="@+id/tv_coin"
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="100"
+                    />
+
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btn_start_dati"
+                android:layout_width="130dp"
+                android:layout_height="60dp"
+                android:background="@drawable/btn_start_game"
+                android:typeface="monospace"
+                android:textColor="#ffff"
+                android:textSize="30sp"
                 android:layout_alignParentBottom="true"
                 android:layout_centerHorizontal="true"
-                android:layout_marginBottom="200dp"
+                android:layout_marginBottom="80dp"
                 />
-        </com.steelkiwi.library.SlidingSquareLoaderView>
+
+            <com.steelkiwi.library.SlidingSquareLoaderView
+                android:id="@+id/view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="invisible"
+                app:sslv_corner_radius="30dp"
+                app:sslv_margin="10dp"
+                app:sslv_end_gradient_color="@color/themegreen"
+                app:sslv_start_gradient_color="@color/start_gradient_color"
+                app:sslv_background_color="#ffffff"
+                app:sslv_square_size="@dimen/square_size">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="please waiting...."
+                    android:textSize="24sp"
+                    android:textColor="@color/themegreen"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginBottom="200dp"
+                    />
+            </com.steelkiwi.library.SlidingSquareLoaderView>
+
+        </RelativeLayout>
 
     </FrameLayout>
 

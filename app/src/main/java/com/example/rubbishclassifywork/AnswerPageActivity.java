@@ -54,10 +54,26 @@ public class AnswerPageActivity extends BaseActivity implements View.OnClickList
         btn_upload=findViewById(R.id.btn_upload);
         tv_question_count=findViewById(R.id.tv_question_conut);
         tv_time_count=findViewById(R.id.tv_time_count);
+        btn_next.setOnClickListener(this);
+        btn_upload.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.btn_upload:
+//                radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+//                    @Override
+//                    public void onCheckedChanged(RadioGroup group, int checkedId) {
+//                        if(checkedId==optionD.getId()){
+                            tv_istrue.setVisibility(View.VISIBLE);
+                            tv_istrue.setText("恭喜你，回答正确");
+                            tv_explain.setText(cursor.getString(cursor.getColumnIndex("explains")));
+//                        }
+//                    }
+//                });break;
+            case R.id.btn_next:
+        }
 
     }
 
@@ -74,15 +90,6 @@ public class AnswerPageActivity extends BaseActivity implements View.OnClickList
             }
         };
         timerStart();
-        btn_upload.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //rl_explain.setVisibility(View.VISIBLE);
-                tv_istrue.setVisibility(View.VISIBLE);
-                tv_istrue.setText("恭喜你，回答正确");
-                tv_explain.setText(cursor.getString(cursor.getColumnIndex("explains")));
-            }
-        });
         tv_explain.setText("这题有点难哦！");
         tv_istrue.setText("温馨小提示：");
         tv_question.setText(cursor.getString(cursor.getColumnIndex("question")));
