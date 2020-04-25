@@ -54,7 +54,6 @@ public class AnswerPageActivity extends BaseActivity implements View.OnClickList
         btn_upload=findViewById(R.id.btn_upload);
         tv_question_count=findViewById(R.id.tv_question_conut);
         tv_time_count=findViewById(R.id.tv_time_count);
-        rl_explain.setVisibility(View.GONE);
     }
 
     @Override
@@ -78,10 +77,14 @@ public class AnswerPageActivity extends BaseActivity implements View.OnClickList
         btn_upload.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                rl_explain.setVisibility(View.VISIBLE);
+                //rl_explain.setVisibility(View.VISIBLE);
+                tv_istrue.setVisibility(View.VISIBLE);
+                tv_istrue.setText("恭喜你，回答正确");
                 tv_explain.setText(cursor.getString(cursor.getColumnIndex("explains")));
             }
         });
+        tv_explain.setText("这题有点难哦！");
+        tv_istrue.setText("温馨小提示：");
         tv_question.setText(cursor.getString(cursor.getColumnIndex("question")));
         optionA.setText(cursor.getString(cursor.getColumnIndex("answer1")));
         optionB.setText(cursor.getString(cursor.getColumnIndex("answer2")));

@@ -107,7 +107,6 @@
             android:text=""
             android:paddingHorizontal="5dp"
             android:paddingVertical="5dp"
-
             android:button="@drawable/optiona_radiobutton"
             android:textColor="#363636"
             android:textSize="@dimen/answer_text_size"/>
@@ -153,7 +152,8 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/rg_options"
         android:visibility="visible"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="30dp"
+        android:paddingRight="10dp"
         android:layout_marginLeft="10dp">
         <LinearLayout
             android:layout_width="wrap_content"
@@ -163,16 +163,17 @@
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:src="@mipmap/earth"/>
-            <com.example.rubbishclassifywork.Fragment.BubbleLayout
+            <com.daasuu.bl.BubbleLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="16dp"
-                app:background_color="#FFD700"
-                app:direction="left"
-                app:offset="-40dp"
-                app:radius="10dp"
-                app:shadow_color="#999999"
-                app:shadow_size="4dp"
+                android:padding="15dp"
+                android:visibility="visible"
+                app:bl_bubbleColor="#FFD700"
+                app:bl_arrowDirection="left"
+                app:bl_cornersRadius="20dp"
+                app:bl_strokeColor="#999999"
+                app:bl_strokeWidth="1dp"
+
             >
                 <RelativeLayout
                     android:layout_width="wrap_content"
@@ -195,7 +196,7 @@
                         android:textColor="#363636"
                         android:textSize="@dimen/answer_text_size"/>
                 </RelativeLayout>
-            </com.example.rubbishclassifywork.Fragment.BubbleLayout>
+            </com.daasuu.bl.BubbleLayout>
         </LinearLayout>
     </RelativeLayout>
 

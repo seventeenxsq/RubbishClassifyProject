@@ -30,6 +30,7 @@ dependencies {
     implementation 'com.google.code.gson:gson:2.8.5'
 
     implementation 'id.arieridwan:pageloader:0.0.2'
+    implementation 'com.daasuu:BubbleLayout:1.0.0'
 
 
 

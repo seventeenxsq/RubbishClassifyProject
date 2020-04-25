@@ -39,7 +39,6 @@
             app:setTextSize="10sp"
             />
 
-
     </FrameLayout>
 
 </RelativeLayout>
