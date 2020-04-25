@@ -31,6 +31,7 @@ dependencies {
 
     implementation 'id.arieridwan:pageloader:0.0.2'
     implementation 'com.daasuu:BubbleLayout:1.0.0'
+    implementation 'com.steelkiwi:sliding-square-loader-view:1.0.0'
 
 
 

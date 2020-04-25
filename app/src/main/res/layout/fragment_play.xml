@@ -27,17 +27,29 @@
             android:layout_marginBottom="80dp"
             />
 
-        <id.arieridwan.lib.PageLoader
-            android:id="@+id/pageloader"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:layout_gravity="center"
-            app:setLoadingText="正在载入..."
-            app:setTextColor="#51a488"
-            app:setLoadingAnimationMode="rotate"
-            app:setErrorText="请点击重新加载.."
-            app:setTextSize="10sp"
-            />
+        <com.steelkiwi.library.SlidingSquareLoaderView
+            android:id="@+id/view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="invisible"
+            app:sslv_corner_radius="30dp"
+            app:sslv_margin="10dp"
+            app:sslv_end_gradient_color="@color/themegreen"
+            app:sslv_start_gradient_color="@color/start_gradient_color"
+            app:sslv_background_color="#ffffff"
+            app:sslv_square_size="@dimen/square_size">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="please waiting...."
+                android:textSize="24sp"
+                android:textColor="@color/themegreen"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="200dp"
+                />
+        </com.steelkiwi.library.SlidingSquareLoaderView>
 
     </FrameLayout>
 

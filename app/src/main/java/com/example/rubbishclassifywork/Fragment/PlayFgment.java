@@ -22,6 +22,7 @@ import com.example.rubbishclassifywork.HelperClass.Question;
 import com.example.rubbishclassifywork.R;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.steelkiwi.library.SlidingSquareLoaderView;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -35,7 +36,7 @@ public class PlayFgment extends Fragment implements View.OnClickListener {
     String url="http://106.13.235.119:8080/Server/MyAnswerServlet";
     private MyDatabaseHelper dbHelper;
     private SQLiteDatabase db;
-    private PageLoader pageLoader;
+    private SlidingSquareLoaderView slidingSquareLoaderView;
 
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         //
@@ -48,7 +49,7 @@ public class PlayFgment extends Fragment implements View.OnClickListener {
 
 
     private void initView(View view) {
-        pageLoader=view.findViewById(R.id.pageloader);
+        slidingSquareLoaderView=view.findViewById(R.id.view);
         btn_start_dati=view.findViewById(R.id.btn_start_dati);
         btn_start_dati.setOnClickListener(this);
     }
@@ -86,7 +87,7 @@ public class PlayFgment extends Fragment implements View.OnClickListener {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            pageLoader.startProgress();
+            slidingSquareLoaderView.show();
             btn_start_dati.setVisibility(View.GONE);
         }
 
@@ -121,7 +122,7 @@ public class PlayFgment extends Fragment implements View.OnClickListener {
         @Override
         protected void onPostExecute(String result) {
             super.onPostExecute(result);
-            pageLoader.stopProgress();
+            slidingSquareLoaderView.hide();
             Intent intent=new Intent(getContext(), AnswerPageActivity.class);
             startActivity(intent);
             btn_start_dati.setVisibility(View.VISIBLE);
