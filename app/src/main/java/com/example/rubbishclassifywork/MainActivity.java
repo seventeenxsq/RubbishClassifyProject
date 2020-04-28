@@ -105,7 +105,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         Vibrator vibrator = (Vibrator)getSystemService(Service.VIBRATOR_SERVICE);
-        vibrator.vibrate(30);
+        vibrator.vibrate(20);
         resetImg();
         switch (v.getId()) {
             case R.id.btn_1:

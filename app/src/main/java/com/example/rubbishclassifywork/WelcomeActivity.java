@@ -37,6 +37,7 @@ public class WelcomeActivity extends BaseActivity {
     private  void toMain(){
         Intent intent=new Intent(this, MainActivity.class);
         startActivity(intent);
+        //结束welcome页面
         finish();
     }
 

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- 手指触摸时的 -->
+    <item android:state_pressed="true">
+        <shape xmlns:android="http://schemas.android.com/apk/res/android"
+            android:shape="oval"
+            android:useLevel="false">
+            <solid android:color="#7C8B7C7C"/>
+            <size
+                android:width="15dp"
+                android:height="15dp" />
+            <padding
+                android:bottom="1dp"
+                android:left="2dp"
+                android:right="2dp"
+                android:top="1dp" />
+        </shape>
+    </item>
+
+    <!-- 默认的（触摸之前）button -->
+    <item>
+        <shape xmlns:android="http://schemas.android.com/apk/res/android"
+            android:shape="oval"
+            android:useLevel="false">
+            <solid android:color="#40E4DBDB"/>
+            <size
+                android:width="15dp"
+                android:height="15dp" />
+            <padding
+                android:bottom="1dp"
+                android:left="2dp"
+                android:right="2dp"
+                android:top="1dp" />
+        </shape>
+    </item>
+</selector>

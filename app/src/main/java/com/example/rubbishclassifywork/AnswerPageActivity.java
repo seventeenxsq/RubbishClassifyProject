@@ -39,6 +39,7 @@ public class AnswerPageActivity extends BaseActivity implements View.OnClickList
 
 
     }
+
     private void initView(){
         tv_question_type=findViewById(R.id.tv_question_type);
         tv_question=findViewById(R.id.tv_question);

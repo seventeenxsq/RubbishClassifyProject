@@ -32,5 +32,4 @@ dependencies {
     implementation 'id.arieridwan:pageloader:0.0.2'
 
 
-
 }
