@@ -14,93 +14,101 @@
     <LinearLayout
         android:id="@+id/tab_camera"
         android:layout_width="0dp"
-        android:layout_height="fill_parent"
+        android:layout_height="50dp"
+        android:layout_gravity="center_vertical"
         android:layout_weight="1"
         android:gravity="center"
         android:orientation="vertical" >
 
-        <ImageButton
-
+        <ImageView
             android:id="@+id/btn_1"
             android:layout_width="60dp"
-            android:layout_height="32dp"
+            android:layout_height="23dp"
+            android:layout_marginTop="3dp"
+            android:src="@mipmap/icon_eye_green"
+            />
 
-            android:clickable="false"
-             />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="识别"
+            android:layout_marginTop="3dp"
             android:textColor="#6A6879" />
     </LinearLayout>
 
     <LinearLayout
         android:id="@+id/tab_search"
         android:layout_width="0dp"
-        android:layout_height="fill_parent"
+        android:layout_height="50dp"
+        android:layout_gravity="center_vertical"
         android:layout_weight="1"
         android:gravity="center"
         android:orientation="vertical" >
 
-        <ImageButton
+        <ImageView
             android:id="@+id/btn_2"
             android:layout_width="60dp"
-            android:layout_height="32dp"
-
-            android:clickable="false"
+            android:layout_height="23dp"
+            android:layout_marginTop="3dp"
+            android:src="@mipmap/icon_search"
              />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="搜索"
+            android:layout_marginTop="3dp"
             android:textColor="#6A6879" />
     </LinearLayout>
-
     <LinearLayout
-        android:id="@+id/tab_play"
+        android:id="@+id/tab_dati"
         android:layout_width="0dp"
-        android:layout_height="fill_parent"
+        android:layout_height="50dp"
+        android:layout_gravity="center_vertical"
         android:layout_weight="1"
         android:gravity="center"
         android:orientation="vertical" >
 
-        <ImageButton
+        <ImageView
             android:id="@+id/btn_3"
             android:layout_width="60dp"
-            android:layout_height="32dp"
-
-            android:clickable="false"
-             />
+            android:layout_height="23dp"
+            android:layout_marginTop="3dp"
+            android:src="@mipmap/icon_dati"
+            />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="答题"
+            android:layout_marginTop="3dp"
             android:textColor="#6A6879" />
     </LinearLayout>
 
     <LinearLayout
         android:id="@+id/tab_me"
         android:layout_width="0dp"
-        android:layout_height="fill_parent"
+        android:layout_height="50dp"
+        android:layout_gravity="center_vertical"
         android:layout_weight="1"
         android:gravity="center"
         android:orientation="vertical" >
 
-        <ImageButton
+        <ImageView
             android:id="@+id/btn_4"
             android:layout_width="60dp"
-            android:layout_height="32dp"
-
-            android:clickable="false"
+            android:layout_height="23dp"
+            android:layout_marginTop="3dp"
+            android:src="@mipmap/icon_me"
             />
+
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="我的"
+            android:layout_marginTop="3dp"
             android:textColor="#6A6879" />
     </LinearLayout>
 
