@@ -4,9 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimary"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@mipmap/background"
+        android:alpha="0.8"/>
 
     <RelativeLayout
         android:layout_height="match_parent"
@@ -60,7 +65,7 @@
                 android:id="@+id/btn_takephoto"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:alpha="0.9"
+                android:alpha="1"
                 android:background="@drawable/button_circle" />
 
             <ImageView
