@@ -18,7 +18,6 @@ import static android.content.ContentValues.TAG;
 public class MoveScrollView extends NestedScrollView {
 
     int lastX,lastY;
-    int rawscaleY;
 
     //接口对象
     private getTopListener getTopListener = null;
@@ -42,35 +41,40 @@ public class MoveScrollView extends NestedScrollView {
         //x,y是当时view得绝对坐标
         int x = (int) event.getX();
         int y = (int) event.getY();
+        //判断的绝对坐标
+        int scaleY=getTopListener.stopView().getHeight();
 
         //判断动作并分发
         switch (event.getAction()){
 
             case MotionEvent.ACTION_DOWN:
                 lastY=y;
-                Log.e(TAG, "onTouchEvent:ACTION_DOWN "+String.valueOf(lastY) );
+                Log.e(TAG, "onTouchEvent:ACTION_DOWN getTop"+getTop());
                 break;
 
             case MotionEvent.ACTION_MOVE:
                 int offsetY = y - lastY;
 
-                layout(getLeft(),
-                        getTop()+offsetY,
-                        getRight(),
-                        getBottom()+offsetY);
-                Log.e(TAG, "getTop "+getTop()+"getBottom"+getBottom());
-                Log.e(TAG, ",y轴的偏移量为" + offsetY + ",移动的过程中y坐标为"+y);
-
-//                NestedScrollView.LayoutParams layoutParams = (LinearLayout.LayoutParams) getLayoutParams();
-//                layoutParams.leftMargin = getLeft()+offsetX;
-//                layoutParams.topMargin = getTop() +offsetY;
-//                setLayoutParams(layoutParams);
-
-                //在此处做判断是否该显示标题栏
-                if (getTop()==(100)){
-                    Log.e(TAG, "#######到了########");
+                if (getTop()+offsetY>scaleY){
+//                    layout(getLeft(),
+//                            scaleY,
+//                            getRight(),
+//                            scaleY+getHeight());
+//                    Log.e(TAG, "画的getHeight(): "+String.valueOf(getHeight()));
+//                    Log.e(TAG, "scaleY "+scaleY);
+//                    Log.e(TAG, "getTop(): "+String.valueOf(getTop()));
+                break;
+            } else if(getTop()<=scaleY) {
+                    layout(getLeft(),
+                            getTop()+offsetY,
+                            getRight(),
+                            getBottom()+offsetY);
+                    Log.e(TAG, "getTop "+getTop()+"   getBottom"+getBottom());
+                    Log.e(TAG, "scaleY "+scaleY);
+                    Log.e(TAG, ",y轴的偏移量为" + offsetY + ",移动的过程中y坐标为"+y);
                 }
 
+                //展示标题判断
                 if (getTopListener != null) {
                     // 在这里将方法暴露出去
                     getTopListener.showTitle(this);
@@ -91,6 +95,8 @@ public class MoveScrollView extends NestedScrollView {
     public interface getTopListener  {
         //接口中的方法,参数只要y周坐标就行
         void showTitle(View scrollView);
+        //让它返回view
+        View stopView();
     }
 
 

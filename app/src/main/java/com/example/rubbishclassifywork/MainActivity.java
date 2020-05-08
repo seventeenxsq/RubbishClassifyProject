@@ -33,7 +33,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         //
-        Log.e("jnitest", "success ");
+        Log.e("succeed", helloJNI());
 
         initView();
     }
@@ -61,7 +61,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         viewPager.setCurrentItem(0);
         viewPager.setOnPageChangeListener(new MyPagerChangeListener());
     }
-
 
     /**
      * 设置一个ViewPager的侦听事件，当左右滑动ViewPager时菜单栏被选中状态跟着改变
@@ -112,7 +111,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         Vibrator vibrator = (Vibrator)getSystemService(Service.VIBRATOR_SERVICE);
-        vibrator.vibrate(20);
+        vibrator.vibrate(10);
         resetImg();
         switch (v.getId()) {
             case R.id.btn_1:
@@ -136,7 +135,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         }
     }
 
-    public native String helloJNI();
+    public static native String helloJNI();
 
     // Used to load the 'native-lib' library on application startup.
     static {

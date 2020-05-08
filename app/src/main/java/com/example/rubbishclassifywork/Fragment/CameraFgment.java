@@ -13,12 +13,9 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
-import android.view.animation.ScaleAnimation;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -35,17 +32,20 @@ import com.example.rubbishclassifywork.R;
 
 import java.util.Objects;
 
+import pl.droidsonroids.gif.GifImageView;
+
 import static android.content.ContentValues.TAG;
 
 public class CameraFgment extends Fragment implements View.OnClickListener {
 
-
     private MoveScrollView moveScrollView;
     private Toolbar toolbar;
     private FrameLayout fmlayout_takephoto;
-    private ImageView iv_banyuan;
+    private ImageView iv_banyuan,ivgreenbullon,ivsky,btnkehuishou,btnqitalaji,btnshilaji,btnyouhailaji;
+    private GifImageView gifbird;
     private Button btn_local;
     private TextView tv_local;
+
 
     @Override//将fragment与布局文件联系起来
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -74,13 +74,17 @@ public class CameraFgment extends Fragment implements View.OnClickListener {
                     toolbar.setVisibility(View.INVISIBLE);
                 }
             }
+
+            @Override
+            public View stopView() {
+                return ivsky;
+            }
         });
         //属性动画
         Animatation();
 
         return view;
     }
-
 
     private void initFindView(final View view) {
         moveScrollView=view.findViewById(R.id.scroll_camerafgment);
@@ -89,12 +93,22 @@ public class CameraFgment extends Fragment implements View.OnClickListener {
         iv_banyuan=view.findViewById(R.id.iv_banyuan);
         btn_local=view.findViewById(R.id.btn_local);
         tv_local=view.findViewById(R.id.tv_local);
+        ivgreenbullon=view.findViewById(R.id.tv_greeybullon);
+        gifbird=view.findViewById(R.id.gif_bird);
+        ivsky=view.findViewById(R.id.iv_sky);
+        btnkehuishou=view.findViewById(R.id.iv_kehuishou);
+        btnqitalaji=view.findViewById(R.id.iv_ganlaji);
+        btnshilaji=view.findViewById(R.id.iv_shilaji);
+        btnyouhailaji=view.findViewById(R.id.iv_youhailaji);
 
         //设置为可点击
         fmlayout_takephoto.setOnClickListener(this);
         btn_local.setOnClickListener(this);
+        btnkehuishou.setOnClickListener(this);
+        btnqitalaji.setOnClickListener(this);
+        btnshilaji.setOnClickListener(this);
+        btnyouhailaji.setOnClickListener(this);
     }
-
 
     @Override
     public void onClick(View v) {
@@ -143,8 +157,21 @@ public class CameraFgment extends Fragment implements View.OnClickListener {
         animator1.setRepeatCount(-1);//设置一直重复
         animator1.start();
 
-    }
+        ObjectAnimator animator2 = ObjectAnimator.ofFloat(ivgreenbullon, "translationY", 0f, -1500f);
+        animator2.setDuration(7000);
+        animator2.setRepeatCount(-1);//设置一直重复
+        animator2.start();
 
+        AnimatorSet birdAnimatorSet = new AnimatorSet();
+        @SuppressLint("ObjectAnimatorBinding") ObjectAnimator animator3_x = ObjectAnimator.ofFloat(gifbird, "translationX",0,1500);
+        @SuppressLint("ObjectAnimatorBinding") ObjectAnimator animator3_y = ObjectAnimator.ofFloat(gifbird, "translationY",0,-300);
+        animator3_x.setRepeatCount(ValueAnimator.INFINITE);//永久循环
+        animator3_y.setRepeatCount(ValueAnimator.INFINITE);
+        birdAnimatorSet.setDuration(4000);//时间
+        birdAnimatorSet.play(animator3_x).with(animator3_y);//两个动画同时开始
+
+        birdAnimatorSet.start();//开始
+    }
 
     private void showCoordinate(View view) {
         float coordx=view.getX();

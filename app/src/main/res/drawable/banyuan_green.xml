@@ -5,7 +5,7 @@
     >
     <size android:height="160dp"
         android:width="160dp"/>
-    <solid android:color = "@color/colorPrimaryDark" />
+    <solid android:color = "#F32ED2EC" />
     <corners
         android:bottomLeftRadius = "0dp"
         android:bottomRightRadius = "180dp"

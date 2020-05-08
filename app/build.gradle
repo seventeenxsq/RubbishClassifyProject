@@ -39,12 +39,14 @@ dependencies {
     androidTestImplementation 'androidx.test:runner:1.2.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 
+    implementation 'com.github.bumptech.glide:glide:4.3.1'
     implementation 'com.github.arimorty:floatingsearchview:2.1.1'
     implementation 'com.google.code.gson:gson:2.8.5'
 
     implementation 'id.arieridwan:pageloader:0.0.2'
     implementation 'com.daasuu:BubbleLayout:1.0.0'
     implementation 'com.steelkiwi:sliding-square-loader-view:1.0.0'
+    implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.7'
 
 
 }
