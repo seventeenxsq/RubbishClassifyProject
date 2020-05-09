@@ -13,7 +13,7 @@ public class WelcomeActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.item_news);
+        setContentView(R.layout.activity_welcome);
         Transfer();
         initView();
     }

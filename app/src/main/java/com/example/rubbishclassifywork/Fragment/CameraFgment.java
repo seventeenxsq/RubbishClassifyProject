@@ -163,7 +163,7 @@ public class CameraFgment extends Fragment implements View.OnClickListener {
         animator2.start();
 
         AnimatorSet birdAnimatorSet = new AnimatorSet();
-        @SuppressLint("ObjectAnimatorBinding") ObjectAnimator animator3_x = ObjectAnimator.ofFloat(gifbird, "translationX",0,1500);
+        @SuppressLint("ObjectAnimatorBinding") ObjectAnimator animator3_x = ObjectAnimator.ofFloat(gifbird, "translationX",0,1800);
         @SuppressLint("ObjectAnimatorBinding") ObjectAnimator animator3_y = ObjectAnimator.ofFloat(gifbird, "translationY",0,-300);
         animator3_x.setRepeatCount(ValueAnimator.INFINITE);//永久循环
         animator3_y.setRepeatCount(ValueAnimator.INFINITE);

@@ -11,7 +11,7 @@
         android:id="@+id/iv_sky"
         android:layout_width="match_parent"
         android:layout_height="400dp"
-        android:background="@mipmap/bg_sky"/>
+        android:background="@mipmap/beijing"/>
 
     <pl.droidsonroids.gif.GifImageView
         android:id="@+id/gif_bird"

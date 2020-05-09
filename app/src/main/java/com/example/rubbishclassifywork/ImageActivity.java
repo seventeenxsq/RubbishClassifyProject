@@ -14,7 +14,6 @@ public class ImageActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_image);
-        System.out.println(MainActivity.helloJNI());
 
     }
 }
