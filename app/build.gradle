@@ -33,6 +33,9 @@ dependencies {
     implementation 'com.daasuu:BubbleLayout:1.0.0'
     implementation 'com.steelkiwi:sliding-square-loader-view:1.0.0'
 
+    implementation 'com.romainpiel.shimmer:library:1.4.0@aar'
+    implementation 'com.wang.avi:library:2.1.3'
+
 
 
 }
