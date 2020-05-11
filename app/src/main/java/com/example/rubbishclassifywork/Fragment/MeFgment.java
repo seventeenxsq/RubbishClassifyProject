@@ -59,9 +59,12 @@ public class MeFgment extends Fragment implements View.OnClickListener {
 
     private void initData(){
         mlist=new ArrayList();
-        mlist.add(new ContentModel(R.mipmap.dengji,"称号",R.mipmap.next,1));
-        mlist.add(new ContentModel(R.mipmap.shangcheng,"商城",R.mipmap.next,2));
-        mlist.add(new ContentModel(R.mipmap.shezhi,"设置",R.mipmap.next,3));
+        mlist.add(new ContentModel(R.mipmap.qiandao,"签到",R.mipmap.next,0));
+        mlist.add(new ContentModel(R.mipmap.jifens,"积分",R.mipmap.next,1));
+        mlist.add(new ContentModel(R.mipmap.dengji,"称号",R.mipmap.next,2));
+        mlist.add(new ContentModel(R.mipmap.shangcheng,"商城",R.mipmap.next,3));
+        mlist.add(new ContentModel(R.mipmap.shezhi,"设置",R.mipmap.next,4));
+        mlist.add(new ContentModel(R.mipmap.gerenxinxi,"个人信息",R.mipmap.next,5));
     }
     @Override
     public void onClick(View v) {
