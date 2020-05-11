@@ -10,11 +10,11 @@
         android:roundIcon="@mipmap/icon1_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-<<<<<<< HEAD
+
         <activity android:name=".RewardActivity"></activity>
-=======
+
         <activity android:name=".ImageActivity"></activity>
->>>>>>> ed7357762dca34547b82c1a071268f21d220d1f8
+
         <activity android:name=".AnswerPageActivity" />
         <activity android:name=".WelcomeActivity">
             <intent-filter>

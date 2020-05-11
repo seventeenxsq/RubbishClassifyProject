@@ -31,7 +31,7 @@ public class RewardActivity extends BaseActivity implements View.OnClickListener
         final AlertDialog alertDialog2 = new AlertDialog.Builder(this)
                 .setTitle("奖励关卡")
                 .setMessage("恭喜您，触发了奖励关卡")
-                .setIcon(R.mipmap.ic_launcher)
+                .setIcon(R.mipmap.gift)
                 .setPositiveButton("继续", new DialogInterface.OnClickListener() {//添加"Yes"按钮
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
