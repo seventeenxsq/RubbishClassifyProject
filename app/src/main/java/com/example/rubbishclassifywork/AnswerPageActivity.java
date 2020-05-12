@@ -1,7 +1,6 @@
 package com.example.rubbishclassifywork;
 
-import androidx.appcompat.app.AppCompatActivity;
-
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -25,6 +24,7 @@ public class AnswerPageActivity extends BaseActivity implements View.OnClickList
     private Button btn_upload,btn_next;
     private RelativeLayout rl_explain;
     private CountDownTimer timer;
+    private int count=1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +42,7 @@ public class AnswerPageActivity extends BaseActivity implements View.OnClickList
 
     private void initView(){
         tv_question_type=findViewById(R.id.tv_question_type);
+        tv_question_count=findViewById(R.id.tv_question_conut);
         tv_question=findViewById(R.id.tv_question);
         radioGroup=findViewById(R.id.rg_options);
         optionA=findViewById(R.id.optionA);
@@ -63,17 +64,23 @@ public class AnswerPageActivity extends BaseActivity implements View.OnClickList
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.btn_upload:
-//                radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-//                    @Override
-//                    public void onCheckedChanged(RadioGroup group, int checkedId) {
-//                        if(checkedId==optionD.getId()){
-                            tv_istrue.setVisibility(View.VISIBLE);
-                            tv_istrue.setText("恭喜你，回答正确");
-                            tv_explain.setText(cursor.getString(cursor.getColumnIndex("explains")));
-//                        }
-//                    }
-//                });break;
+                tv_istrue.setVisibility(View.VISIBLE);
+                tv_istrue.setText("恭喜你，回答正确，积分+20");
+                tv_explain.setText(cursor.getString(cursor.getColumnIndex("explains")));
+                count++;
+                break;
+
             case R.id.btn_next:
+                radioGroup.clearCheck();
+                if (count!=3){
+                    cursor.moveToNext();
+                    showData();
+                }else {
+                    Intent intent=new Intent(AnswerPageActivity.this,RewardActivity.class);
+                    startActivity(intent);
+                    overridePendingTransition(R.anim.rotate_in, R.anim.rotate_out);
+                }
+                break;
         }
 
     }
@@ -98,6 +105,7 @@ public class AnswerPageActivity extends BaseActivity implements View.OnClickList
         optionB.setText(cursor.getString(cursor.getColumnIndex("answer2")));
         optionC.setText(cursor.getString(cursor.getColumnIndex("answer3")));
         optionD.setText(cursor.getString(cursor.getColumnIndex("answer4")));
+        tv_question_count.setText(String.valueOf(count)+"/10");
     }
 
     public String formatTime(long millisecond) {

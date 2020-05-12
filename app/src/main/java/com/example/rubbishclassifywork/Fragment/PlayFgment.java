@@ -9,7 +9,12 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.view.animation.LinearInterpolator;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -22,6 +27,9 @@ import com.example.rubbishclassifywork.HelperClass.Question;
 import com.example.rubbishclassifywork.R;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+
+import com.romainpiel.shimmer.Shimmer;
+import com.romainpiel.shimmer.ShimmerTextView;
 import com.steelkiwi.library.SlidingSquareLoaderView;
 
 import java.net.MalformedURLException;
@@ -36,7 +44,9 @@ public class PlayFgment extends Fragment implements View.OnClickListener {
     String url="http://106.13.235.119:8080/Server/MyAnswerServlet";
     private MyDatabaseHelper dbHelper;
     private SQLiteDatabase db;
-    private SlidingSquareLoaderView slidingSquareLoaderView;
+    private RelativeLayout relativeLayout;
+    private ImageView rotateimg;
+
 
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         //
@@ -44,14 +54,26 @@ public class PlayFgment extends Fragment implements View.OnClickListener {
         dbHelper=new MyDatabaseHelper(getContext(),"Dati.db",null,1);
         db=dbHelper.getWritableDatabase();
         initView(view);
+        start();
+
         return view;
     }
 
 
-    private void initView(View view) {
-        slidingSquareLoaderView=view.findViewById(R.id.view);
+    private void initView(View view){
+        //slidingSquareLoaderView=view.findViewById(R.id.view);
+        relativeLayout=view.findViewById(R.id.rl_load);
         btn_start_dati=view.findViewById(R.id.btn_start_dati);
+        rotateimg=view.findViewById(R.id.image_rotate);
         btn_start_dati.setOnClickListener(this);
+    }
+
+    private void start(){
+
+        Animation animation= AnimationUtils.loadAnimation(getContext(),R.anim.imgrotate);
+        LinearInterpolator lin = new LinearInterpolator();//设置动画匀速运动
+        animation.setInterpolator(lin);
+        rotateimg.startAnimation(animation);
     }
 
 
@@ -87,7 +109,7 @@ public class PlayFgment extends Fragment implements View.OnClickListener {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            slidingSquareLoaderView.show();
+            //relativeLayout.setVisibility(View.VISIBLE);
             btn_start_dati.setVisibility(View.GONE);
         }
 
@@ -106,11 +128,11 @@ public class PlayFgment extends Fragment implements View.OnClickListener {
             //tv_explain.setText(questions.get(1).getAnswer());
             Log.e("url","success");
             for (int i=0;i<questions.size();i++){
-                try {
-                    Thread.sleep(100);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
+//                try {
+//                    //Thread.sleep(100);
+//                } catch (InterruptedException e) {
+//                    e.printStackTrace();
+//                }
                 addDatas("第"+String.valueOf(questions.get(i).getId())+"题",questions.get(i).getTitle(),questions.get(i).getOptionA(),questions.get(i).getOptionB()
                         ,questions.get(i).getOptionC(),questions.get(i).getOptionD(),questions.get(i).getAnswer(),questions.get(i).getExplain());
             }
@@ -122,7 +144,7 @@ public class PlayFgment extends Fragment implements View.OnClickListener {
         @Override
         protected void onPostExecute(String result) {
             super.onPostExecute(result);
-            slidingSquareLoaderView.hide();
+            relativeLayout.setVisibility(View.GONE);
             Intent intent=new Intent(getContext(), AnswerPageActivity.class);
             startActivity(intent);
             btn_start_dati.setVisibility(View.VISIBLE);
