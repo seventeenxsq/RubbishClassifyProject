@@ -17,8 +17,7 @@ android {
         }
     }
 
-<<<<<<< HEAD
-=======
+
     aaptOptions {
         noCompress "tflite"
     }
@@ -30,7 +29,7 @@ android {
         abortOnError false
     }
 
->>>>>>> ff1609d747db5d1edee7af1e864ec5ace4868ed3
+
 }
 
 dependencies {
