@@ -1,14 +1,12 @@
 package com.example.rubbishclassifywork.Utils.SearchUtil;
 
 import android.content.Context;
-import android.util.Log;
 import android.widget.Filter;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-import static androidx.constraintlayout.widget.Constraints.TAG;
 
 public class DataHelper {
 

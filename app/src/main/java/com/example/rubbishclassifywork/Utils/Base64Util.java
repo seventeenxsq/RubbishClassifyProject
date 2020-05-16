@@ -1,4 +1,4 @@
-package com.example.rubbishclassifywork.Base64Utils;
+package com.example.rubbishclassifywork.Utils;
 
 /**
  * Base64 工具类
