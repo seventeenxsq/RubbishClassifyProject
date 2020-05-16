@@ -313,16 +313,22 @@ public class SearchFgment extends Fragment implements AppBarLayout.OnOffsetChang
     }
     public void onBackPressed(){
         if(isHandleBack){
-            Log.d(TAG, "onBackPressed: backpress is this kkkk");
             rubd.setVisibility(View.GONE);
             rubf.setVisibility(View.GONE);
             mSearchView.clearQuery();
             mSearchView.clearSearchFocus();
             isHandleBack=false;
+            ObjectAnimator animatorBaseChar = ObjectAnimator.ofFloat(baseChar,"alpha",0f,1f);
+            ObjectAnimator animatorSearch = ObjectAnimator.ofFloat(mSearchView,"translationY",-180f,0f);
+            AnimatorSet set = new AnimatorSet();
+            set.setDuration(1000);
+            set.play(animatorSearch).with(animatorBaseChar);
+            set.start();
+            isHandleBack=false;
         }
     }
 
-    public static void ChangeByKind(int kind){
+    private static void ChangeByKind(int kind){
         String otherRubExplains = "其他垃圾是指除餐厨垃圾、有害垃圾、可回收物以外的其他生活废弃物";    //kind=3
         String harmRubExplains = "有害垃圾是指对人体健康或自然环境造成直接或潜在危害的零星废弃物";     //kind=2
         String kitcRubExplains = "餐厨垃圾是指易腐的生物质废弃物，包括剩菜、果壳、绿植、碎骨以及日常食品等";    //kind=4
@@ -360,7 +366,7 @@ public class SearchFgment extends Fragment implements AppBarLayout.OnOffsetChang
         }
     }
 
-    public void initAnimator(){
+    private void initAnimator(){
         ObjectAnimator animator1 = ObjectAnimator.ofFloat(ToRightCar,"translationX",0f,-1200f);
         ObjectAnimator animator2 = ObjectAnimator.ofFloat(ToRightCar,"translationX",1200f,0f);
         ObjectAnimator animator3 = ObjectAnimator.ofFloat(ToLeftCar,"translationX",0f,1200f);
@@ -462,5 +468,9 @@ public class SearchFgment extends Fragment implements AppBarLayout.OnOffsetChang
             }
         });
         setCan.start();
+    }
+
+    public boolean getIsHandleBack(){
+        return isHandleBack;
     }
 }

@@ -2,6 +2,7 @@ package com.example.rubbishclassifywork;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
@@ -24,10 +25,5 @@ public class SearchActivity extends AppCompatActivity {
         FragmentTransaction transaction = fragmentManager.beginTransaction();
         transaction.add(R.id.fragment_search,fragment);
         transaction.commit();
-    }
-    @Override
-    public void onBackPressed() {
-        Log.d(TAG, "onBackPressed: You pressed backpress kkkk");
-        fragment.onBackPressed();
     }
 }

@@ -25,6 +25,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
     LinearLayout button1,button2,button3,button4;
     ImageView imageView_btn1,imageView_btn2,imageView_btn3,imageView_btn4;
+    SearchFgment searchFgment = new SearchFgment();
 
     private List<Fragment> list;
     private ViewPager viewPager;
@@ -57,7 +58,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         //把Fragment添加到List集合里面
         list = new ArrayList<>();
         list.add(new CameraFgment());
-        list.add(new SearchFgment());
+        list.add(searchFgment);
         list.add(new PlayFgment());
         list.add(new MeFgment());
         adapter = new TabFragmentPagerAdapter(getSupportFragmentManager(),list);
@@ -139,5 +140,14 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         }
     }
 
+    @Override
+    public void onBackPressed() {
+        if(searchFgment.getIsHandleBack()){
+            searchFgment.onBackPressed();
+        }
+        else {
+            super.onBackPressed();
+        }
+    }
 }
 
