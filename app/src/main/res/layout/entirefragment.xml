@@ -53,31 +53,39 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="6dp"
-                    android:layout_marginTop="27dp"
-                    android:text="见"
-                    android:textColor="#2FAE8E"
-                    android:textSize="22sp"
-                    android:textStyle="bold" />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="27dp"
-                    android:text="圾"
-                    android:textColor="#FF5252"
-                    android:textSize="25sp"
-                    android:textStyle="bold" />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="27dp"
-                    android:text="行事"
-                    android:textColor="#2FAE8E"
-                    android:textSize="22sp"
-                    android:textStyle="bold" />
+                <ImageView
+                    android:layout_width="100dp"
+                    android:layout_height="60dp"
+                    android:layout_marginLeft="2dp"
+                    android:layout_marginTop="18dp"
+                    android:scaleType="fitXY"
+                    android:src="@mipmap/logo" />
+
+<!--                <TextView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginLeft="6dp"-->
+<!--                    android:layout_marginTop="27dp"-->
+<!--                    android:text="见"-->
+<!--                    android:textColor="#2FAE8E"-->
+<!--                    android:textSize="22sp"-->
+<!--                    android:textStyle="bold" />-->
+<!--                <TextView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginTop="27dp"-->
+<!--                    android:text="圾"-->
+<!--                    android:textColor="#FF5252"-->
+<!--                    android:textSize="25sp"-->
+<!--                    android:textStyle="bold" />-->
+<!--                <TextView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginTop="27dp"-->
+<!--                    android:text="行事"-->
+<!--                    android:textColor="#2FAE8E"-->
+<!--                    android:textSize="22sp"-->
+<!--                    android:textStyle="bold" />-->
 
 
             </LinearLayout>
@@ -221,7 +229,7 @@
             android:layout_gravity="center"
             android:singleLine="true"
             android:layout_marginTop="25dp"
-            android:text="健康咨询"
+            android:text="健康资讯"
             android:textColor="#222222"
             android:textSize="20sp" />
 
@@ -254,6 +262,7 @@
                         android:id="@+id/iv_kehuishou"
                         android:layout_width="0dp"
                         android:layout_height="50dp"
+                        android:onClick="True"
                         android:src="@mipmap/pic_kehuishou"
                         android:layout_weight="1"/>
 
@@ -261,6 +270,7 @@
                         android:id="@+id/iv_ganlaji"
                         android:layout_width="0dp"
                         android:layout_height="50dp"
+                        android:onClick="True"
                         android:src="@mipmap/pic_ganlaji"
                         android:layout_weight="1"/>
 
@@ -268,12 +278,14 @@
                         android:id="@+id/iv_shilaji"
                         android:layout_width="0dp"
                         android:layout_height="50dp"
+                        android:onClick="True"
                         android:src="@mipmap/pic_shilaji"
                         android:layout_weight="1"/>
 
                     <ImageView
                         android:id="@+id/iv_youhailaji"
                         android:layout_width="0dp"
+                        android:onClick="True"
                         android:src="@mipmap/pic_youhailaji"
                         android:layout_height="50dp"
                         android:layout_weight="1"/>
@@ -307,7 +319,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="20dp"
                     android:layout_marginTop="5dp"
-                    android:text="健  康  咨  询"
+                    android:text="健  康  资 讯"
                     android:textStyle="bold"
                     android:gravity="center_horizontal"/>
 
