@@ -40,15 +40,15 @@ public class DetectorActivity extends CameraActivity implements OnImageAvailable
   private static final int TF_OD_API_INPUT_SIZE = 300;
 
   //////模型文件名TF_OD_API_MODEL_FILE 标签名TF_OD_API_LABELS_FILEs
-  private static final String TF_OD_API_MODEL_FILE = "detector.tflite";
-  private static final String TF_OD_API_LABELS_FILE = "file:///android_asset/rubbishlabel.txt";
+  private static final String TF_OD_API_MODEL_FILE = "detect.tflite";
+  private static final String TF_OD_API_LABELS_FILE = "file:///android_asset/labelmap.txt";
   private static final DetectorMode MODE = DetectorMode.TF_OD_API;
   //最小确信度的阈值
   private static final float MINIMUM_CONFIDENCE_TF_OD_API = 0.6f;
   private static final float MAXMUM_CONFIDENCE_TF_OD_API = 1f;
-///表示模型是否量化 不造啥意思
-  private static final boolean TF_OD_API_IS_QUANTIZED = false;
 
+  /////////表示模型是否量化 不造啥意思//////////////
+  private static final boolean TF_OD_API_IS_QUANTIZED = true;
 
   private static final boolean MAINTAIN_ASPECT = false;
   private static final Size DESIRED_PREVIEW_SIZE = new Size(640, 480);

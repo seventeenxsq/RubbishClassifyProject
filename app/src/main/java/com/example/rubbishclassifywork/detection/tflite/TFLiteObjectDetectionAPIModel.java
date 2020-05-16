@@ -230,7 +230,7 @@ public class TFLiteObjectDetectionAPIModel implements Classifier {
       // while outputClasses correspond to class index from 0 to number_of_classes
       //这里给得出的结果标签整体加1
       //就是是说，我的标签集还是从0开始就行了
-      int labelOffset = 0;
+      int labelOffset = 1;
   ////得到Recognition对象 添加到列表中
       recognitions.add(
           new Recognition(
