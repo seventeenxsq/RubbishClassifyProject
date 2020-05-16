@@ -55,6 +55,7 @@ public class RewardActivity extends BaseActivity implements View.OnClickListener
             case R.id.rw_btn_upload:
                 textView_reward.setText("感谢您的参与，积分+40");
                 textView_explain.setText("");
+                finish();
                 break;
         }
     }

@@ -13,7 +13,7 @@
         <ImageView
             android:id="@+id/blur_head"
             android:layout_width="match_parent"
-            android:src="@mipmap/beijing"
+            android:src="@mipmap/earthbackground"
             android:scaleType="centerCrop"
             android:layout_height="200dp" />
 
@@ -60,10 +60,28 @@
     </FrameLayout>
 
     <RelativeLayout
+        android:id="@+id/rl_head"
         android:layout_below="@id/fl_head"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp">
+
+        <ListView
+            android:id="@+id/lv_nobtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:dividerHeight="0dp"
+            android:divider="#ffffff"
+            />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_below="@id/rl_head"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+
         <ListView
             android:id="@+id/lv_info"
             android:layout_width="match_parent"

@@ -110,7 +110,7 @@ public class PlayFgment extends Fragment implements View.OnClickListener {
         protected void onPreExecute() {
             super.onPreExecute();
             //relativeLayout.setVisibility(View.VISIBLE);
-            btn_start_dati.setVisibility(View.GONE);
+            //btn_start_dati.setVisibility(View.GONE);
         }
 
         @Override
@@ -147,7 +147,7 @@ public class PlayFgment extends Fragment implements View.OnClickListener {
             relativeLayout.setVisibility(View.GONE);
             Intent intent=new Intent(getContext(), AnswerPageActivity.class);
             startActivity(intent);
-            btn_start_dati.setVisibility(View.VISIBLE);
+            //btn_start_dati.setVisibility(View.VISIBLE);
 
 
         }
