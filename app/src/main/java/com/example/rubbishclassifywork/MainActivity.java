@@ -3,8 +3,11 @@ package com.example.rubbishclassifywork;
 import android.app.Service;
 import android.os.Bundle;
 import android.os.Vibrator;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
@@ -20,7 +23,8 @@ import java.util.List;
 
 public class MainActivity extends BaseActivity implements View.OnClickListener {
 
-    ImageButton button1,button2,button3,button4;
+    LinearLayout button1,button2,button3,button4;
+    ImageView imageView_btn1,imageView_btn2,imageView_btn3,imageView_btn4;
 
     private List<Fragment> list;
     private ViewPager viewPager;
@@ -35,10 +39,14 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     }
 
     private void initView(){
-        button1=findViewById(R.id.btn_1);
-        button2=findViewById(R.id.btn_2);
-        button3=findViewById(R.id.btn_3);
-        button4=findViewById(R.id.btn_4);
+        button1=findViewById(R.id.tab_camera);
+        button2=findViewById(R.id.tab_search);
+        button3=findViewById(R.id.tab_dati);
+        button4=findViewById(R.id.tab_me);
+        imageView_btn1=findViewById(R.id.btn_1);
+        imageView_btn2=findViewById(R.id.btn_2);
+        imageView_btn3=findViewById(R.id.btn_3);
+        imageView_btn4=findViewById(R.id.btn_4);
         viewPager = findViewById(R.id.viewpager);
 
         button1.setOnClickListener(this);
@@ -57,7 +65,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         viewPager.setCurrentItem(0);
         viewPager.setOnPageChangeListener(new MyPagerChangeListener());
     }
-
 
     /**
      * 设置一个ViewPager的侦听事件，当左右滑动ViewPager时菜单栏被选中状态跟着改变
@@ -78,14 +85,16 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
             int currentItem = viewPager.getCurrentItem();
             switch (currentItem) {
                 case 0:
-                    //button1.setImageResource(R.mipmap.btn_1_green);
+                    imageView_btn1.setImageResource(R.mipmap.icon_eye_green);
                     break;
                 case 1:
-                    //button2.setImageResource(R.mipmap.btn_2_green);
-                    //frontImage.setVisibility(View.VISIBLE);
+                    imageView_btn2.setImageResource(R.mipmap.icon_search_green);
                     break;
                 case 2:
-                    //button3.setImageResource(R.mipmap.icon2);
+                    imageView_btn3.setImageResource(R.mipmap.icon_dati_green);
+                    break;
+                case 3:
+                    imageView_btn4.setImageResource(R.mipmap.icon_me_green);
                     break;
                 default:
                     break;
@@ -97,36 +106,38 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
     //重置图片资源
     private void resetImg() {
-//        button1.setImageResource(R.mipmap.eyeicon);
-//        button2.setImageResource(R.mipmap.searchicon);
-//        button3.setImageResource(R.mipmap.icon3);
+        imageView_btn1.setImageResource(R.mipmap.icon_eye);
+        imageView_btn2.setImageResource(R.mipmap.icon_search);
+        imageView_btn3.setImageResource(R.mipmap.icon_dati);
+        imageView_btn4.setImageResource(R.mipmap.icon_me);
     }
 
     @Override
     public void onClick(View v) {
         Vibrator vibrator = (Vibrator)getSystemService(Service.VIBRATOR_SERVICE);
-        vibrator.vibrate(30);
+        vibrator.vibrate(10);
         resetImg();
         switch (v.getId()) {
-            case R.id.btn_1:
+            case R.id.tab_camera:
                 viewPager.setCurrentItem(0);// 跳到第一个页面
-//                button1.setImageResource(R.mipmap.btn_1_green); // 图片变为选中
+                imageView_btn1.setImageResource(R.mipmap.icon_eye_green); // 图片变为选中
                 break;
-            case R.id.btn_2:
+            case R.id.tab_search:
                 viewPager.setCurrentItem(1);
-//                button2.setImageResource(R.mipmap.btn_2_green);
+                imageView_btn2.setImageResource(R.mipmap.icon_search_green);
                 break;
-            case R.id.btn_3:
+            case R.id.tab_dati:
                 viewPager.setCurrentItem(2);
-//                button3.setImageResource(R.mipmap.icon2);
+                imageView_btn3.setImageResource(R.mipmap.icon_dati_green);
                 break;
-            case R.id.btn_4:
+            case R.id.tab_me:
                 viewPager.setCurrentItem(3);
-//                button3.setImageResource(R.mipmap.icon);
+                imageView_btn4.setImageResource(R.mipmap.icon_me_green);
                 break;
             default:
                 break;
         }
     }
+
 }
 

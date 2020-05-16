@@ -1,0 +1,334 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/iv_sky"
+        android:layout_width="match_parent"
+        android:layout_height="400dp"
+        android:background="@mipmap/beijing"/>
+
+    <pl.droidsonroids.gif.GifImageView
+        android:id="@+id/gif_bird"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="200dp"
+        android:layout_marginStart="-150dp"
+        android:scaleType="fitCenter"
+        android:src="@mipmap/bird"/>
+
+    <RelativeLayout
+        android:layout_height="match_parent"
+        android:layout_width="match_parent">
+
+        <ImageView
+            android:id="@+id/tv_greeybullon"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@mipmap/greenbullon"
+            android:scaleType="fitCenter"
+            android:layout_marginTop="400dp"
+            android:layout_alignParentEnd="true"/>
+
+        <RelativeLayout
+            android:layout_width="150dp"
+            android:layout_height="180dp">
+
+            <ImageView
+                android:id="@+id/iv_banyuan"
+                android:layout_width="130dp"
+                android:layout_height="166dp"
+                android:layout_marginLeft="-10dp"
+                android:layout_marginTop="-15dp"
+                android:alpha="0.9"
+                android:src="@mipmap/bluebulloon" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="6dp"
+                    android:layout_marginTop="27dp"
+                    android:text="见"
+                    android:textColor="#2FAE8E"
+                    android:textSize="22sp"
+                    android:textStyle="bold" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="27dp"
+                    android:text="圾"
+                    android:textColor="#FF5252"
+                    android:textSize="25sp"
+                    android:textStyle="bold" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="27dp"
+                    android:text="行事"
+                    android:textColor="#2FAE8E"
+                    android:textSize="22sp"
+                    android:textStyle="bold" />
+
+
+            </LinearLayout>
+
+
+
+        </RelativeLayout>
+
+
+        <ImageView
+            android:id="@+id/iv_lishijilu"
+            android:layout_width="23dp"
+            android:layout_height="23dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="5dp"
+            android:src="@mipmap/lishijilu"
+            android:layout_alignParentEnd="true"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/iv_lishijilu"
+            android:layout_alignStart="@id/iv_lishijilu"
+            android:text=" 历史"
+            android:textColor="#ffffff"
+            android:textStyle="bold"
+            android:textSize="9dp"/>
+
+
+        <TextView
+            android:id="@+id/tv_local"
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:layout_alignTop="@+id/iv_lishijilu"
+            android:layout_toStartOf="@id/iv_lishijilu"
+            android:layout_marginEnd="20dp"
+            android:gravity="center"
+            android:text="地区"
+            android:textSize="10sp"
+            android:textStyle="bold"
+            android:layout_marginTop="5dp"
+            android:textColor="@color/white"
+            android:background="@drawable/background_ovel"
+            tools:ignore="SmallSp" />
+
+        <ImageView
+            android:id="@+id/iv_local"
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:src="@mipmap/local"
+            android:layout_alignTop="@+id/tv_local"
+            android:layout_toLeftOf="@+id/tv_local"
+            android:layout_marginEnd="3dp"/>
+
+        <Button
+            android:id="@+id/btn_local"
+            android:layout_width="55dp"
+            android:layout_height="34dp"
+            android:layout_alignTop="@id/iv_lishijilu"
+            android:layout_alignBottom="@+id/tv_local"
+            android:layout_marginTop="-1dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginRight="3dp"
+            android:layout_marginBottom="-8dp"
+            android:visibility="visible"
+            android:alpha="0"
+            android:layout_toStartOf="@id/iv_lishijilu" />
+
+        <ImageView
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:scaleType="fitXY"
+            android:src="@mipmap/bullon_bottom"
+            android:layout_below="@+id/fmlayout_takephoto"
+            android:layout_marginTop="-12dp"
+            android:layout_centerInParent="true"
+            />
+
+        <FrameLayout
+            android:id="@+id/fmlayout_takephoto"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_marginTop="100dp"
+            android:layout_centerHorizontal="true"
+            >
+
+            <ImageView
+                android:id="@+id/btn_takephoto"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:alpha="0.9"
+                android:background="@drawable/button_circle" />
+
+            <ImageView
+                android:id="@+id/iv_camera"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginTop="49dp"
+                android:layout_gravity="center_horizontal"
+                android:background="@mipmap/pic_takephoto" />
+
+            <ImageView
+                android:id="@+id/iv_fangkuang"
+                android:layout_width="95dp"
+                android:layout_height="95dp"
+                android:layout_marginTop="31dp"
+                android:layout_gravity="center_horizontal"
+                android:background="@mipmap/pic_fangkuang" />
+
+            <TextView
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="138dp"
+                android:gravity="center"
+                android:text="拍 照 搜 索"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textColor="#ffffff" />
+
+
+        </FrameLayout>
+
+
+
+    </RelativeLayout>
+
+    <!--    先设置它隐藏-->
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar_camerafgmnet"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="#FFFFFF"
+        android:visibility="gone"
+        >
+
+        <TextView
+            android:id="@+id/toolbar_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:singleLine="true"
+            android:layout_marginTop="25dp"
+            android:text="健康咨询"
+            android:textColor="#222222"
+            android:textSize="20sp" />
+
+    </androidx.appcompat.widget.Toolbar>
+
+    <com.example.rubbishclassifywork.Adaper.MoveScrollView
+            android:id="@+id/scroll_camerafgment"
+            android:layout_marginTop="370dp"
+            android:layout_width="match_parent"
+            android:layout_height="1000dp"
+            android:background="@drawable/rectangle"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+
+                <LinearLayout
+                    android:layout_marginStart="30dp"
+                    android:layout_marginEnd="30dp"
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/iv_kehuishou"
+                        android:layout_width="0dp"
+                        android:layout_height="50dp"
+                        android:src="@mipmap/pic_kehuishou"
+                        android:layout_weight="1"/>
+
+                    <ImageView
+                        android:id="@+id/iv_ganlaji"
+                        android:layout_width="0dp"
+                        android:layout_height="50dp"
+                        android:src="@mipmap/pic_ganlaji"
+                        android:layout_weight="1"/>
+
+                    <ImageView
+                        android:id="@+id/iv_shilaji"
+                        android:layout_width="0dp"
+                        android:layout_height="50dp"
+                        android:src="@mipmap/pic_shilaji"
+                        android:layout_weight="1"/>
+
+                    <ImageView
+                        android:id="@+id/iv_youhailaji"
+                        android:layout_width="0dp"
+                        android:src="@mipmap/pic_youhailaji"
+                        android:layout_height="50dp"
+                        android:layout_weight="1"/>
+
+                </LinearLayout>
+
+
+<!--                <TextView-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="20dp"-->
+<!--                    android:layout_marginTop="10dp"-->
+<!--                    android:text="讨   论   区"-->
+<!--                    android:textStyle="bold"-->
+<!--                    android:gravity="center_horizontal" />-->
+
+<!--                <View-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="2dp"-->
+<!--                    android:background="#E5939E97"/>-->
+
+
+<!--                <LinearLayout-->
+<!--                        android:id="@+id/linearlayout_taolunqu"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="100dp"-->
+<!--                        android:orientation="vertical">-->
+
+<!--                    </LinearLayout>-->
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp"
+                    android:layout_marginTop="5dp"
+                    android:text="健  康  咨  询"
+                    android:textStyle="bold"
+                    android:gravity="center_horizontal"/>
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:background="#E5939E97"/>
+
+                <include layout="@layout/item_news"/>
+                <include layout="@layout/item_news"/>
+                <include layout="@layout/item_news"/>
+                <include layout="@layout/item_news"/>
+                <include layout="@layout/item_news"/>
+                <include layout="@layout/item_news"/>
+
+
+
+
+
+            </LinearLayout>
+
+        </com.example.rubbishclassifywork.Adaper.MoveScrollView>
+
+</FrameLayout>

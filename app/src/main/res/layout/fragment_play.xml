@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    >
+    xmlns:match="http://schemas.android.com/tools">
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -11,9 +11,20 @@
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:src="@mipmap/cartoonearth"
+            android:src="@mipmap/earthbackground"
             android:scaleType="centerCrop"
             />
+        <ImageView
+            android:id="@+id/image_rotate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/roearth"/>
+        <ImageView
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:src="@mipmap/ourearth_removebg_preview"
+            />
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
@@ -44,6 +55,8 @@
 
             </LinearLayout>
 
+
+
             <Button
                 android:id="@+id/btn_start_dati"
                 android:layout_width="130dp"
@@ -57,31 +70,37 @@
                 android:layout_marginBottom="80dp"
                 />
 
-            <com.steelkiwi.library.SlidingSquareLoaderView
-                android:id="@+id/view"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:visibility="invisible"
-                app:sslv_corner_radius="30dp"
-                app:sslv_margin="10dp"
-                app:sslv_end_gradient_color="@color/themegreen"
-                app:sslv_start_gradient_color="@color/start_gradient_color"
-                app:sslv_background_color="#ffffff"
-                app:sslv_square_size="@dimen/square_size">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="please waiting...."
-                    android:textSize="24sp"
-                    android:textColor="@color/themegreen"
-                    android:layout_alignParentBottom="true"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginBottom="200dp"
-                    />
-            </com.steelkiwi.library.SlidingSquareLoaderView>
 
         </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_load"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/themegreen"
+            android:visibility="invisible"
+            >
+            <com.wang.avi.AVLoadingIndicatorView
+                android:id="@+id/avl_loadview"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                app:indicatorName="PacmanIndicator"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="精彩马上开始"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@id/avl_loadview"
+                android:textSize="30sp"
+                android:textColor="@color/white"
+                />
+
+        </RelativeLayout>
+
+
 
     </FrameLayout>
 
