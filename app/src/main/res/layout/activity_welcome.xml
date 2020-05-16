@@ -1,13 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".WelcomeActivity"
-    android:background="@color/colorPrimary"
     android:orientation="vertical">
 
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:alpha="0.9"
+        android:scaleType="fitXY"
+        android:src="@mipmap/background" />
+
+    <ImageView
+        android:id="@+id/eye1"
+        android:layout_width="22dp"
+        android:layout_height="22dp"
+        android:src="@mipmap/eye"
+        android:layout_marginTop="17dp"
+        android:layout_marginLeft="28dp"
+        android:layout_alignLeft="@+id/Logowithoutxingshi"
+        android:layout_alignTop="@id/Logowithoutxingshi"
+        />
+
+    <ImageView
+        android:id="@+id/eye2"
+        android:layout_width="22dp"
+        android:layout_height="22dp"
+        android:src="@mipmap/eye"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="1dp"
+        android:layout_toRightOf="@id/eye1"
+        android:layout_alignTop="@id/Logowithoutxingshi"
+        />
+
+    <ImageView
+        android:id="@+id/Logowithoutxingshi"
+        android:layout_width="260dp"
+        android:layout_height="110dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="150dp"
+        android:src="@mipmap/withoutxingshi"
+        />
+
+    <ImageView
+        android:id="@+id/xingshi"
+        android:layout_width="150dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="-1dp"
+        android:layout_alignRight="@id/Logowithoutxingshi"
+        android:layout_marginRight="-6dp"
+        android:layout_alignTop="@id/Logowithoutxingshi"
+        android:visibility="invisible"
+        android:src="@mipmap/xingshi" />
+
+    <ImageView
+        android:id="@+id/iv_car"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:visibility="invisible"
+        android:src="@mipmap/car"/>
 
 
-</LinearLayout>
+</RelativeLayout>
