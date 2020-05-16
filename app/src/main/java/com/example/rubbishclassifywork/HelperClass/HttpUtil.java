@@ -44,7 +44,6 @@ public class HttpUtil {
             }
             if (connection != null) {
                 connection.disconnect();
-                ;
             }
         }
         return null;

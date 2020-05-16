@@ -7,10 +7,15 @@ import com.arlib.floatingsearchview.suggestions.model.SearchSuggestion;
 
 public class RubbishSuggestion implements SearchSuggestion {
     private String mRubbishName;
+    private int RubbishKind;
     private boolean mIsHistory = false;
 
     public RubbishSuggestion(String suggestion) {
         this.mRubbishName = suggestion.toLowerCase();
+    }
+
+    public RubbishSuggestion(){
+
     }
 
     public RubbishSuggestion(Parcel source) {
@@ -52,5 +57,20 @@ public class RubbishSuggestion implements SearchSuggestion {
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(mRubbishName);
         dest.writeInt(mIsHistory ? 1 : 0);
+    }
+
+    public int getRubbishKind() {
+        return RubbishKind;
+    }
+
+    public void setRubbishKind(int rubbishKind) {
+        RubbishKind = rubbishKind;
+    }
+    public String getRubbishName() {
+        return mRubbishName;
+    }
+
+    public void setRubbishName(String rubbishName) {
+        mRubbishName = rubbishName;
     }
 }
