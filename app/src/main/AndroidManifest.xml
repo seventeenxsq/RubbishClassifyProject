@@ -10,9 +10,12 @@
         android:roundIcon="@mipmap/icon_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".InfoActivity"/>
+        <activity android:name=".UserInfoActivity"></activity>
+        <activity android:name=".RegisterActivity" />
+        <activity android:name=".LoginActivity" />
         <activity android:name=".RewardActivity" />
-        <activity android:name=".ImageActivity" />
+        <activity android:name=".StoreActivity" />
+        <activity android:name=".InfoActivity"/>
         <activity android:name=".AnswerPageActivity" />
         <activity android:name=".WelcomeActivity">
             <intent-filter>
@@ -22,7 +25,6 @@
             </intent-filter>
         </activity>
         <activity android:name=".MainActivity" />
-        <activity android:name=".SearchActivity" />
         <activity
             android:name=".detection.detection.DetectorActivity"
             android:screenOrientation="fullSensor">

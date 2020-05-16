@@ -17,6 +17,7 @@ android {
         }
     }
 
+
     aaptOptions {
         noCompress "tflite"
     }
@@ -27,6 +28,7 @@ android {
     lintOptions {
         abortOnError false
     }
+
 
 }
 
