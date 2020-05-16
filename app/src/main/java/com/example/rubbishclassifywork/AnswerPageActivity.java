@@ -53,9 +53,11 @@ public class AnswerPageActivity extends BaseActivity implements View.OnClickList
             @Override
             public void onFinish() {
                 tv_time_count.setText("00:00");
+                iv_img.setImageResource(R.mipmap.xiangpini);
                 if (count==3){
                     Intent intent=new Intent(AnswerPageActivity.this,RewardActivity.class);
                     startActivity(intent);
+                    finish();
                     overridePendingTransition(R.anim.rotate_in, R.anim.rotate_out);
                 }
                 cursor.moveToNext();
@@ -100,7 +102,6 @@ public class AnswerPageActivity extends BaseActivity implements View.OnClickList
             case R.id.btn_upload:
                 timerCancel();
                 tv_istrue.setVisibility(View.VISIBLE);
-                iv_img.setImageResource(R.mipmap.xiangpini);
                 tv_istrue.setText("恭喜你，回答正确，积分+20");
                 tv_explain.setText(cursor.getString(cursor.getColumnIndex("explains")));
                 next_timer.start();

@@ -7,14 +7,19 @@
         android:icon="@mipmap/icon"
         android:label="@string/app_name"
         android:networkSecurityConfig="@xml/network_security_config"
-        android:roundIcon="@mipmap/icon1_round"
+        android:roundIcon="@mipmap/icon_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+<<<<<<< HEAD
         <activity android:name=".UserInfoActivity"></activity>
         <activity android:name=".RegisterActivity" />
         <activity android:name=".LoginActivity" />
         <activity android:name=".RewardActivity" />
         <activity android:name=".StoreActivity" />
+=======
+        <activity android:name=".InfoActivity"/>
+        <activity android:name=".RewardActivity" />
+>>>>>>> ff1609d747db5d1edee7af1e864ec5ace4868ed3
         <activity android:name=".ImageActivity" />
         <activity android:name=".AnswerPageActivity" />
         <activity android:name=".WelcomeActivity">
@@ -26,9 +31,14 @@
         </activity>
         <activity android:name=".MainActivity" />
         <activity android:name=".SearchActivity" />
+        <activity
+            android:name=".detection.detection.DetectorActivity"
+            android:screenOrientation="fullSensor">
+        </activity>
     </application>
-    <uses-feature android:name="android.hardware.camera" />
 
+
+    <uses-feature android:name="android.hardware.camera" />
     <uses-feature android:name="android.hardware.camera.autofocus" />
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
@@ -40,7 +50,6 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.PERMISSIONNAME" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-
     <uses-permission android:name="android.permission.VIBRATE" />
 
 </manifest>

@@ -211,7 +211,7 @@
             android:layout_marginLeft="20dp"
             android:layout_centerHorizontal="true"
             android:textColor="@color/white"
-            android:background="@color/themegreen"
+            android:background="@color/colorPrimary"
             />
 
     </RelativeLayout>

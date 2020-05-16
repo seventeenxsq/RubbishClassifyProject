@@ -18,22 +18,17 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
-
 import com.example.rubbishclassifywork.Adaper.MoveScrollView;
-import com.example.rubbishclassifywork.ImageActivity;
+import com.example.rubbishclassifywork.InfoActivity;
 import com.example.rubbishclassifywork.R;
-
+import com.example.rubbishclassifywork.detection.detection.DetectorActivity;
 import java.util.Objects;
-
 import pl.droidsonroids.gif.GifImageView;
-
 import static android.content.ContentValues.TAG;
 
 public class CameraFgment extends Fragment implements View.OnClickListener {
@@ -117,8 +112,8 @@ public class CameraFgment extends Fragment implements View.OnClickListener {
         switch (v.getId()){
             case R.id.fmlayout_takephoto:
                 vibrator.vibrate(30);
-                Intent intent1 = new Intent(v.getContext(), ImageActivity.class);
-                startActivity(intent1);
+                Intent intent = new Intent(v.getContext(), DetectorActivity.class);
+                startActivity(intent);
                 break;
             case R.id.btn_local:
                 vibrator.vibrate(30);
@@ -136,6 +131,25 @@ public class CameraFgment extends Fragment implements View.OnClickListener {
                 //最后我们要显示alterdialog
                 builder.show();
                 break;
+            case R.id.iv_kehuishou:
+                Intent intent1 = new Intent(getActivity(), InfoActivity.class);
+                intent1.putExtra(InfoActivity.CONTENT_URL,"https://baike.baidu.com/item/%E5%8F%AF%E5%9B%9E%E6%94%B6%E7%89%A9/2479461?fr=kg_general");
+                startActivity(intent1);
+                break;
+            case R.id.iv_ganlaji:
+                Intent intent2 = new Intent(getActivity(), InfoActivity.class);
+                intent2.putExtra(InfoActivity.CONTENT_URL,"https://baike.baidu.com/item/%E5%B9%B2%E5%9E%83%E5%9C%BE/23589706?ivk_sa=1022817p");
+                startActivity(intent2);
+                break;
+            case R.id.iv_shilaji:
+                Intent intent3 = new Intent(getActivity(), InfoActivity.class);
+                intent3.putExtra(InfoActivity.CONTENT_URL,"https://m.baidu.com/sf_bk/item/%E6%B9%BF%E5%9E%83%E5%9C%BE/23589703?fromtitle=%E6%9C%89%E6%9C%BA%E5%9E%83%E5%9C%BE&fromid=3467944&fr=aladdin&ms=1&rid=7207784841057021943");
+                startActivity(intent3);
+                break;
+            case R.id.iv_youhailaji:
+                Intent intent4 = new Intent(getActivity(), InfoActivity.class);
+                intent4.putExtra(InfoActivity.CONTENT_URL,"https://m.baidu.com/sf_bk/item/%E6%9C%89%E5%AE%B3%E5%9E%83%E5%9C%BE/5677220?fr=kg_general&ms=1&rid=7951982560968948558");
+                startActivity(intent4);
         }
     }
 
