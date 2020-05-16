@@ -13,27 +13,27 @@ import android.widget.ListView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.example.rubbishclassifywork.HelperClass.ContentAdapter;
 import com.example.rubbishclassifywork.HelperClass.ContentModel;
+import com.example.rubbishclassifywork.HelperClass.ListInfoAdapter;
 import com.example.rubbishclassifywork.HelperClass.PhotoPopupWindow;
-import com.example.rubbishclassifywork.MainActivity;
 import com.example.rubbishclassifywork.R;
+import com.example.rubbishclassifywork.StoreActivity;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import jp.wasabeef.glide.transformations.BlurTransformation;
 import jp.wasabeef.glide.transformations.CropCircleTransformation;
 
 public class MeFgment extends Fragment implements View.OnClickListener {
     private ImageView blurImageView,avatarImageView;
     private List<ContentModel> mlist;
-    private ListView listView;
+    private List<ContentModel> listInfoAdapters;
+    private ListView listView,listView_head;
     private ContentAdapter madapter;
+    private ListInfoAdapter listInfoAdapter;
 
     @Override//将fragment与布局文件联系起来
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -51,20 +51,42 @@ public class MeFgment extends Fragment implements View.OnClickListener {
     private void initView(View view) {
         blurImageView=view.findViewById(R.id.blur_head);
         avatarImageView=view.findViewById(R.id.h_head);
+        listView_head=view.findViewById(R.id.lv_nobtn);
         listView=view.findViewById(R.id.lv_info);
         madapter=new ContentAdapter(getActivity(),mlist);
         listView.setAdapter(madapter);
+        listInfoAdapter=new ListInfoAdapter(getActivity(),listInfoAdapters);
+        listView_head.setAdapter(listInfoAdapter);
         avatarImageView.setOnClickListener(this);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                switch ((int)id){
+                    case 0:
+                    case 1:
+                        Intent intent=new Intent(getContext(),StoreActivity.class);
+                        startActivity(intent);
+                        break;
+                    case 2:
+
+                        break;
+                    case 3:
+                    default:
+                        break;
+                }
+            }
+        });
     }
 
     private void initData(){
         mlist=new ArrayList();
         mlist.add(new ContentModel(R.mipmap.qiandao,"签到",R.mipmap.next,0));
-        mlist.add(new ContentModel(R.mipmap.jifens,"积分",R.mipmap.next,1));
-        mlist.add(new ContentModel(R.mipmap.dengji,"称号",R.mipmap.next,2));
-        mlist.add(new ContentModel(R.mipmap.shangcheng,"商城",R.mipmap.next,3));
-        mlist.add(new ContentModel(R.mipmap.shezhi,"设置",R.mipmap.next,4));
-        mlist.add(new ContentModel(R.mipmap.gerenxinxi,"个人信息",R.mipmap.next,5));
+        mlist.add(new ContentModel(R.mipmap.shangcheng,"商城",R.mipmap.next,1));
+        mlist.add(new ContentModel(R.mipmap.shezhi,"设置",R.mipmap.next,2));
+        mlist.add(new ContentModel(R.mipmap.gerenxinxi,"个人信息",R.mipmap.next,3));
+        listInfoAdapters=new ArrayList();
+        listInfoAdapters.add(new ContentModel(R.mipmap.qiandao,"积分","100",0));
+        listInfoAdapters.add(new ContentModel(R.mipmap.jifens,"称号","分类小能手",1));
     }
     @Override
     public void onClick(View v) {
@@ -87,26 +109,7 @@ public class MeFgment extends Fragment implements View.OnClickListener {
                         Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL, 0, 0);
         }
 
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                switch ((int)id){
-                    case 1:
-
-
-                        break;
-                    case 2:
-
-                        break;
-                    case 3:
-
-                        break;
-                    default:
-                        break;
-                }
-            }
-        });
 
     }
 }

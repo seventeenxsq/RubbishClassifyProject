@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
@@ -23,7 +24,8 @@ public class AnswerPageActivity extends BaseActivity implements View.OnClickList
     private RadioGroup radioGroup;
     private Button btn_upload,btn_next;
     private RelativeLayout rl_explain;
-    private CountDownTimer timer;
+    private CountDownTimer timer,next_timer;
+    private ImageView iv_img;
     private int count=1;
 
     @Override
@@ -34,10 +36,43 @@ public class AnswerPageActivity extends BaseActivity implements View.OnClickList
         db=dbHelper.getWritableDatabase();
         cursor = db.query("Dati", null, null, null, null, null, null, null);
         cursor.moveToFirst();
+        init();
         initView();
         showData();
 
 
+    }
+
+    private void init(){
+        next_timer=new CountDownTimer(5*1000,1000) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+                tv_time_count.setText(formatTime(millisUntilFinished));
+            }
+
+            @Override
+            public void onFinish() {
+                tv_time_count.setText("00:00");
+                if (count==3){
+                    Intent intent=new Intent(AnswerPageActivity.this,RewardActivity.class);
+                    startActivity(intent);
+                    overridePendingTransition(R.anim.rotate_in, R.anim.rotate_out);
+                }
+                cursor.moveToNext();
+                showData();
+            }
+        };
+        timer=new CountDownTimer(15*1000,1000) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+                tv_time_count.setText(formatTime(millisUntilFinished));
+            }
+
+            @Override
+            public void onFinish() {
+                tv_time_count.setText("00:00");
+            }
+        };
     }
 
     private void initView(){
@@ -52,11 +87,10 @@ public class AnswerPageActivity extends BaseActivity implements View.OnClickList
         tv_istrue=findViewById(R.id.tv_istrue);
         tv_explain=findViewById(R.id.tv_explain);
         rl_explain=findViewById(R.id.rl_explain);
-        btn_next=findViewById(R.id.btn_next);
         btn_upload=findViewById(R.id.btn_upload);
         tv_question_count=findViewById(R.id.tv_question_conut);
         tv_time_count=findViewById(R.id.tv_time_count);
-        btn_next.setOnClickListener(this);
+        iv_img=findViewById(R.id.iv_img);
         btn_upload.setOnClickListener(this);
     }
 
@@ -64,39 +98,21 @@ public class AnswerPageActivity extends BaseActivity implements View.OnClickList
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.btn_upload:
+                timerCancel();
                 tv_istrue.setVisibility(View.VISIBLE);
+                iv_img.setImageResource(R.mipmap.xiangpini);
                 tv_istrue.setText("恭喜你，回答正确，积分+20");
                 tv_explain.setText(cursor.getString(cursor.getColumnIndex("explains")));
+                next_timer.start();
                 count++;
                 break;
 
-            case R.id.btn_next:
-                radioGroup.clearCheck();
-                if (count!=3){
-                    cursor.moveToNext();
-                    showData();
-                }else {
-                    Intent intent=new Intent(AnswerPageActivity.this,RewardActivity.class);
-                    startActivity(intent);
-                    overridePendingTransition(R.anim.rotate_in, R.anim.rotate_out);
-                }
-                break;
         }
 
     }
 
     private void showData(){
-        timer=new CountDownTimer(15*1000,1000) {
-            @Override
-            public void onTick(long millisUntilFinished) {
-                tv_time_count.setText(formatTime(millisUntilFinished));
-            }
-
-            @Override
-            public void onFinish() {
-                tv_time_count.setText("00:00");
-            }
-        };
+        radioGroup.clearCheck();
         timerStart();
         tv_explain.setText("这题有点难哦！");
         tv_istrue.setText("温馨小提示：");

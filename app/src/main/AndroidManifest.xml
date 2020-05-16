@@ -10,11 +10,12 @@
         android:roundIcon="@mipmap/icon1_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
-        <activity android:name=".RewardActivity"></activity>
-
-        <activity android:name=".ImageActivity"></activity>
-
+        <activity android:name=".UserInfoActivity"></activity>
+        <activity android:name=".RegisterActivity" />
+        <activity android:name=".LoginActivity" />
+        <activity android:name=".RewardActivity" />
+        <activity android:name=".StoreActivity" />
+        <activity android:name=".ImageActivity" />
         <activity android:name=".AnswerPageActivity" />
         <activity android:name=".WelcomeActivity">
             <intent-filter>

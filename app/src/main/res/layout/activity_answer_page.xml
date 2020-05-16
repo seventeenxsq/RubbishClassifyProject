@@ -213,21 +213,11 @@
             android:text="提  交"
             android:textSize="24sp"
             android:layout_marginLeft="20dp"
-            android:layout_alignParentLeft="true"
+            android:layout_centerHorizontal="true"
             android:textColor="@color/white"
             android:background="@color/themegreen"
             />
-        <Button
-            android:id="@+id/btn_next"
-            android:layout_width="120dp"
-            android:layout_height="50dp"
-            android:layout_alignParentRight="true"
-            android:text="下一题"
-            android:layout_marginRight="20dp"
-            android:textSize="24sp"
-            android:textColor="@color/white"
-            android:background="@color/themegreen"
-            />
+
 
     </RelativeLayout>
 

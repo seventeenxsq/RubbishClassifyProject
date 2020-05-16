@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginLeft="10dp"
+    android:layout_marginRight="10dp"
+    >
+
+    <EditText
+        android:id="@+id/edt_number"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/edt_background"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:hint="请输入手机号"
+        android:digits="1234567890."
+        android:paddingLeft="3dp"
+        />
+    <GridView
+        android:id="@+id/grid_photo"
+        android:layout_below="@id/edt_number"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:horizontalSpacing="10dp"
+        android:listSelector="@color/themegreen"
+        android:verticalSpacing="10dp"
+        android:layout_marginTop="10dp"
+        android:numColumns="3"
+        android:gravity="center"/>
+
+
+</RelativeLayout>

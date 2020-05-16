@@ -22,7 +22,13 @@
         <ImageView
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:src="@mipmap/ourearth_removebg_preview"
+            android:src="@mipmap/caihongtitle"
+            />
+        <ImageView
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:src="@mipmap/forourearth"
+
             />
 
         <RelativeLayout
