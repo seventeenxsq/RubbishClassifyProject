@@ -33,7 +33,8 @@
         android:layout_width="300dp"
         android:layout_height="50dp"
         android:layout_alignParentBottom="true"
-        android:background="@drawable/rectangle"
+        android:background="@drawable/rectangle_dark"
+        android:layout_centerHorizontal="true"
         android:text="识别有误？点我更正"/>
 
 
