@@ -105,27 +105,27 @@ public abstract class CameraActivity extends BaseActivity
         //minusImageView = findViewById(R.id.minus);
         apiSwitchCompat = findViewById(R.id.api_info_switch);
         bottomSheetLayout = findViewById(R.id.bottom_sheet_layout);
-        sheetBehavior = BottomSheetBehavior.from(bottomSheetLayout);
-        bottomSheetArrowImageView = findViewById(R.id.bottom_sheet_arrow);
+//        sheetBehavior = BottomSheetBehavior.from(bottomSheetLayout);
+//        bottomSheetArrowImageView = findViewById(R.id.bottom_sheet_arrow);
 
-        frameValueTextView = findViewById(R.id.frame_info);
-        cropValueTextView = findViewById(R.id.crop_info);
-        inferenceTimeTextView = findViewById(R.id.inference_info);
+//        frameValueTextView = findViewById(R.id.frame_info);
+//        cropValueTextView = findViewById(R.id.crop_info);
+//        inferenceTimeTextView = findViewById(R.id.inference_info);
 
-        apiSwitchCompat.setOnCheckedChangeListener(this);
+//        apiSwitchCompat.setOnCheckedChangeListener(this);
 
-        sheetBehavior.setHideable(false);
-
-        sheetBehavior.setBottomSheetCallback(
-                new BottomSheetBehavior.BottomSheetCallback() {
-                    @Override
-                    public void onStateChanged(@NonNull View bottomSheet, int newState) {
+//        sheetBehavior.setHideable(false);
 //
-                    }
-
-                    @Override
-                    public void onSlide(@NonNull View bottomSheet, float slideOffset) {}
-                });
+//        sheetBehavior.setBottomSheetCallback(
+//                new BottomSheetBehavior.BottomSheetCallback() {
+//                    @Override
+//                    public void onStateChanged(@NonNull View bottomSheet, int newState) {
+////
+//                    }
+//
+//                    @Override
+//                    public void onSlide(@NonNull View bottomSheet, float slideOffset) {}
+//                });
     }
 
 
