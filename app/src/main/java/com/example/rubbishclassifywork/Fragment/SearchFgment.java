@@ -249,42 +249,36 @@ public class SearchFgment extends Fragment implements AppBarLayout.OnOffsetChang
             public void onFocusCleared() {
 
                 //set the title of the bar so that when focus is returned a new query begins
-                mSearchView.setSearchBarTitle(mLastQuery);
+//                mSearchView.setSearchBarTitle(mLastQuery);
                 //you can also set setSearchText(...) to make keep the query there when not focused and when focus returns
                 //mSearchView.setSearchText(searchSuggestion.getBody());
-
                 Log.d(TAG, "onFocusCleared()");
             }
         });
 
-        mSearchView.setOnBindSuggestionCallback(new SearchSuggestionsAdapter.OnBindSuggestionCallback() {
-            @Override
-            public void onBindSuggestion(View suggestionView, ImageView leftIcon,
-                                         TextView textView, SearchSuggestion item, int itemPosition) {
-                RubbishSuggestion rubbishSuggestion = (RubbishSuggestion) item;
+        mSearchView.setOnBindSuggestionCallback((suggestionView, leftIcon, textView, item, itemPosition) -> {
+            RubbishSuggestion rubbishSuggestion = (RubbishSuggestion) item;
 
-                String textColor = mIsDarkSearchTheme ? "#ffffff" : "#000000";
-                String textLight = mIsDarkSearchTheme ? "#bfbfbf" : "#787878";
+            String textColor = mIsDarkSearchTheme ? "#ffffff" : "#000000";
+            String textLight = mIsDarkSearchTheme ? "#bfbfbf" : "#787878";
 
-                //在这里设置搜索历史的图标，也可以用在其他地方
-                if (rubbishSuggestion.getIsHistory()) {
-                    leftIcon.setImageDrawable(ResourcesCompat.getDrawable(getResources(),
-                            R.drawable.ic_history_black_24dp, null));
+            //在这里设置搜索历史的图标，也可以用在其他地方
+            if (rubbishSuggestion.getIsHistory()) {
+                leftIcon.setImageDrawable(ResourcesCompat.getDrawable(getResources(),
+                        R.drawable.ic_history_black_24dp, null));
 
-                    Util.setIconColor(leftIcon, Color.parseColor(textColor));
-                    leftIcon.setAlpha(.36f);
-                } else {
-                    leftIcon.setAlpha(0.0f);
-                    leftIcon.setImageDrawable(null);
-                }
-
-                textView.setTextColor(Color.parseColor(textColor));
-                String text = rubbishSuggestion.getBody()
-                        .replaceFirst(mSearchView.getQuery(),
-                                "<font color=\"" + textLight + "\">" + mSearchView.getQuery() + "</font>");
-                textView.setText(Html.fromHtml(text));
+                Util.setIconColor(leftIcon, Color.parseColor(textColor));
+                leftIcon.setAlpha(.36f);
+            } else {
+                leftIcon.setAlpha(0.0f);
+                leftIcon.setImageDrawable(null);
             }
 
+            textView.setTextColor(Color.parseColor(textColor));
+            String text = rubbishSuggestion.getBody()
+                    .replaceFirst(mSearchView.getQuery(),
+                            "<font color=\"" + textLight + "\">" + mSearchView.getQuery() + "</font>");
+            textView.setText(Html.fromHtml(text));
         });
     }
 
