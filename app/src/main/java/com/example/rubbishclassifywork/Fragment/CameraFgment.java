@@ -13,9 +13,12 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.ListView;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
@@ -23,24 +26,32 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
-import com.example.rubbishclassifywork.Adaper.MoveScrollView;
+
+import com.example.rubbishclassifywork.Adaper.NewsAdepter;
+import com.example.rubbishclassifywork.HelperClass.NewsItem;
 import com.example.rubbishclassifywork.InfoActivity;
 import com.example.rubbishclassifywork.R;
-import com.example.rubbishclassifywork.detection.detection.DetectorActivity;
+import com.example.rubbishclassifywork.DetectorActivity;
+
+
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 import pl.droidsonroids.gif.GifImageView;
 import static android.content.ContentValues.TAG;
 
 public class CameraFgment extends Fragment implements View.OnClickListener {
 
-    private MoveScrollView moveScrollView;
+    private ScrollView moveScrollView;
     private Toolbar toolbar;
     private FrameLayout fmlayout_takephoto;
     private ImageView iv_banyuan,ivgreenbullon,ivsky,btnkehuishou,btnqitalaji,btnshilaji,btnyouhailaji;
     private GifImageView gifbird;
     private Button btn_local;
     private TextView tv_local;
+    private ListView newslietview;
 
+    private List<NewsItem> newsList=new ArrayList<>();
 
     @Override//将fragment与布局文件联系起来
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -54,35 +65,49 @@ public class CameraFgment extends Fragment implements View.OnClickListener {
         toolbar.bringToFront();
 
         //控制toolbar的显示与关闭 回调接口监听scroll位置
-        moveScrollView.setScrollViewListener(new MoveScrollView.getTopListener() {
-            @Override
-            public void showTitle(View scrollView) {
-                int scaleY=getToolbarHeight(toolbar);
-                if (scrollView.getTop()<=scaleY) {
-                    //显示toolbar
-                    //设置背景透明度要先获取背景
-                    toolbar.setVisibility(View.VISIBLE);
-                    //onCreat方法中可以显示getheight;
-                    Log.e(TAG, "到了到了");
-                }
-                else {
-                    toolbar.setVisibility(View.INVISIBLE);
-                }
-            }
-
-            @Override
-            public View stopView() {
-                return ivsky;
-            }
-        });
+      //  moveScrollView.setScrollViewListener(new MoveScrollView.getTopListener() {
+            //@Override
+//            public void showTitle(View scrollView) {
+//                int scaleY=getToolbarHeight(toolbar);
+//                if (scrollView.getTop()<=scaleY) {
+//                    //显示toolbar
+//                    //设置背景透明度要先获取背景
+//                    toolbar.setVisibility(View.VISIBLE);
+//                    //onCreat方法中可以显示getheight;
+//                    Log.e(TAG, "到了到了");
+//                }
+//                else {
+//                    toolbar.setVisibility(View.INVISIBLE);
+//                }
+//            }
+//
+//            @Override
+//            public View stopView() {
+//                return ivsky;
+//            }
+//        });
         //属性动画
         Animatation();
+        //初始化新闻数据
+        initNews();
+        NewsAdepter adepter=new NewsAdepter(getActivity(),R.layout.item_news,newsList);
+        newslietview.setAdapter(adepter);
 
+        //设置新闻的点击事件
+        newslietview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                NewsItem news=newsList.get(position);
+                Intent intent=new Intent(view.getContext(),InfoActivity.class);
+                intent.putExtra(InfoActivity.CONTENT_URL,news.getNewsurl());
+                startActivity(intent);
+            }
+        });
         return view;
     }
 
     private void initFindView(final View view) {
-        moveScrollView=view.findViewById(R.id.scroll_camerafgment);
+       // moveScrollView=view.findViewById(R.id.scroll_camerafgment);
         toolbar=view.findViewById(R.id.toolbar_camerafgmnet);
         fmlayout_takephoto=view.findViewById(R.id.fmlayout_takephoto);
         iv_banyuan=view.findViewById(R.id.iv_banyuan);
@@ -95,6 +120,7 @@ public class CameraFgment extends Fragment implements View.OnClickListener {
         btnqitalaji=view.findViewById(R.id.iv_ganlaji);
         btnshilaji=view.findViewById(R.id.iv_shilaji);
         btnyouhailaji=view.findViewById(R.id.iv_youhailaji);
+        newslietview=view.findViewById(R.id.listveiw_news);
 
         //设置为可点击
         fmlayout_takephoto.setOnClickListener(this);
@@ -212,9 +238,14 @@ public class CameraFgment extends Fragment implements View.OnClickListener {
         return (int) toolbar.getHeight();
     }
 
-//    //透明渐变的标题
-//    private int alphaTitle(View view){
-//        float alpha= (float) view.getTop() /(float)getToolbarHeight(view);
-//        return (int)alpha*255;
-//    }
+    //初始化新闻列表
+    private void initNews(){
+        for (int i=0;i<10;i++){
+            NewsItem new1=new NewsItem("教你5招，垃圾变废为宝","来源： 垃圾分类",R.mipmap.newspic1,"https://baijiahao.baidu.com/s?id=1610181899616978667&wfr=spider&for=pc&isFailFlag=1");
+            newsList.add(new1);
+            NewsItem new2=new NewsItem("关于环保，这些你要知道","来源： 环保频道",R.mipmap.newspic2,"https://m.baidu.com/sf_baijiahao/s?id=1630963135527316790&wfr=spider&for=pc");
+            newsList.add(new2);
+        }
+    }
+
 }

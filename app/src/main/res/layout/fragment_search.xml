@@ -156,6 +156,7 @@
                 android:layout_alignParentBottom="true" />
         </RelativeLayout>
     </RelativeLayout>
+
     <com.arlib.floatingsearchview.FloatingSearchView
         android:id="@+id/floating_search_view0"
         android:layout_width="match_parent"
@@ -182,42 +183,47 @@
 
     <RelativeLayout
         android:id="@+id/rubf"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
+        android:layout_height="11dp"
         android:animateLayoutChanges="true"
-        android:visibility="gone"
-        android:layout_height="220dp">
+        android:visibility="gone">
+
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scaleType="centerCrop"
-            android:src="@drawable/bacf"/>
-        <TextView
-            android:id="@+id/rubName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="30sp"
-            android:layout_marginTop="100dp"
-            android:layout_marginLeft="30dp"
-            android:textStyle="bold"/>
-        <TextView
-            android:id="@+id/rubKind"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="160dp"
-            android:layout_marginLeft="30dp"
-            android:textSize="32sp"
-            android:textStyle="bold"/>
+            android:src="@drawable/bacf" />
+
         <ImageView
             android:id="@+id/rubImg"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:layout_toLeftOf="@id/ImgBase"
-            android:layout_marginTop="100dp"/>
+            android:layout_marginTop="100dp"
+            android:layout_toLeftOf="@id/ImgBase" />
+
+        <TextView
+            android:id="@+id/rubKind"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="160dp"
+            android:textSize="32sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/rubName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="100dp"
+            android:textSize="30sp"
+            android:textStyle="bold" />
+
         <TextView
             android:id="@+id/ImgBase"
             android:layout_width="30dp"
             android:layout_height="match_parent"
-            android:layout_alignParentRight="true"/>
+            android:layout_alignParentRight="true" />
     </RelativeLayout>
     <RelativeLayout
         android:id="@+id/rubd"

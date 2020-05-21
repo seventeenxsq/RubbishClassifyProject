@@ -55,4 +55,6 @@ dependencies {
     implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.7'
     implementation 'jp.wasabeef:glide-transformations:2.0.1'
 
+    implementation 'org.tensorflow:tensorflow-android:1.13.1'
+
 }

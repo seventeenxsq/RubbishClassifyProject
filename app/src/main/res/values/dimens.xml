@@ -3,4 +3,7 @@
     <dimen name="search_view_inset">5dp</dimen>
     <dimen name="answer_text_size">18sp</dimen>
     <dimen name="radiobutton_margin_size">20dp</dimen>
+    <dimen name="tfe_bottom_sheet_corner_radius">15dp</dimen>
+    <dimen name="tfe_bottom_sheet_top_padding">8dp</dimen>
+    <dimen name="textsize">15dp</dimen>
 </resources>

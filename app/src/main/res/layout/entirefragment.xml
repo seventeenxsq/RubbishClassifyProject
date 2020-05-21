@@ -60,37 +60,7 @@
                     android:layout_marginTop="18dp"
                     android:scaleType="fitXY"
                     android:src="@mipmap/logo" />
-
-<!--                <TextView-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:layout_marginLeft="6dp"-->
-<!--                    android:layout_marginTop="27dp"-->
-<!--                    android:text="见"-->
-<!--                    android:textColor="#2FAE8E"-->
-<!--                    android:textSize="22sp"-->
-<!--                    android:textStyle="bold" />-->
-<!--                <TextView-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:layout_marginTop="27dp"-->
-<!--                    android:text="圾"-->
-<!--                    android:textColor="#FF5252"-->
-<!--                    android:textSize="25sp"-->
-<!--                    android:textStyle="bold" />-->
-<!--                <TextView-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:layout_marginTop="27dp"-->
-<!--                    android:text="行事"-->
-<!--                    android:textColor="#2FAE8E"-->
-<!--                    android:textSize="22sp"-->
-<!--                    android:textStyle="bold" />-->
-
-
             </LinearLayout>
-
-
 
         </RelativeLayout>
 
@@ -235,7 +205,7 @@
 
     </androidx.appcompat.widget.Toolbar>
 
-    <com.example.rubbishclassifywork.Adaper.MoveScrollView
+    <LinearLayout
             android:id="@+id/scroll_camerafgment"
             android:layout_marginTop="370dp"
             android:layout_width="match_parent"
@@ -292,29 +262,6 @@
 
                 </LinearLayout>
 
-
-<!--                <TextView-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="20dp"-->
-<!--                    android:layout_marginTop="10dp"-->
-<!--                    android:text="讨   论   区"-->
-<!--                    android:textStyle="bold"-->
-<!--                    android:gravity="center_horizontal" />-->
-
-<!--                <View-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="2dp"-->
-<!--                    android:background="#E5939E97"/>-->
-
-
-<!--                <LinearLayout-->
-<!--                        android:id="@+id/linearlayout_taolunqu"-->
-<!--                        android:layout_width="match_parent"-->
-<!--                        android:layout_height="100dp"-->
-<!--                        android:orientation="vertical">-->
-
-<!--                    </LinearLayout>-->
-
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="20dp"
@@ -328,19 +275,13 @@
                     android:layout_height="2dp"
                     android:background="#E5939E97"/>
 
-                <include layout="@layout/item_news"/>
-                <include layout="@layout/item_news"/>
-                <include layout="@layout/item_news"/>
-                <include layout="@layout/item_news"/>
-                <include layout="@layout/item_news"/>
-                <include layout="@layout/item_news"/>
-
-
-
-
+                <ListView
+                    android:id="@+id/listveiw_news"
+                    android:layout_width="match_parent"
+                    android:layout_height="1000dp"/>
 
             </LinearLayout>
 
-        </com.example.rubbishclassifywork.Adaper.MoveScrollView>
+        </LinearLayout>
 
 </FrameLayout>
