@@ -16,6 +16,7 @@
         <activity android:name=".RewardActivity" />
         <activity android:name=".StoreActivity" />
         <activity android:name=".InfoActivity"/>
+        <activity android:name=".DetectorActivity"/>
         <activity android:name=".AnswerPageActivity" />
         <activity android:name=".WelcomeActivity">
             <intent-filter>
@@ -25,10 +26,6 @@
             </intent-filter>
         </activity>
         <activity android:name=".MainActivity" />
-        <activity
-            android:name=".detection.detection.DetectorActivity"
-            android:screenOrientation="fullSensor">
-        </activity>
     </application>
 
 

@@ -33,8 +33,6 @@
     </LinearLayout>
 
 
-
-
     <ImageView
         android:id="@+id/item_imageview_next"
         android:layout_width="30dp"
