@@ -55,4 +55,6 @@ dependencies {
     implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.7'
     implementation 'jp.wasabeef:glide-transformations:2.0.1'
 
+    implementation 'com.sdsmdg.tastytoast:tastytoast:0.0.1'
+
 }

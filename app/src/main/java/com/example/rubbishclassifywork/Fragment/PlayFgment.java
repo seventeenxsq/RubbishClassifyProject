@@ -1,10 +1,14 @@
 package com.example.rubbishclassifywork.Fragment;
 
 import android.content.ContentValues;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteDatabase;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,15 +19,21 @@ import android.view.animation.LinearInterpolator;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.rubbishclassifywork.AnswerPageActivity;
+import com.example.rubbishclassifywork.HelperClass.AnalysisUtils;
+import com.example.rubbishclassifywork.HelperClass.DBUtils;
 import com.example.rubbishclassifywork.HelperClass.HttpUtil;
 import com.example.rubbishclassifywork.HelperClass.MyDatabaseHelper;
 import com.example.rubbishclassifywork.HelperClass.Question;
+import com.example.rubbishclassifywork.HelperClass.User;
+import com.example.rubbishclassifywork.MainActivity;
 import com.example.rubbishclassifywork.R;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -46,6 +56,7 @@ public class PlayFgment extends Fragment implements View.OnClickListener {
     private SQLiteDatabase db;
     private RelativeLayout relativeLayout;
     private ImageView rotateimg;
+    private TextView textView_jifen;
 
 
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -54,6 +65,10 @@ public class PlayFgment extends Fragment implements View.OnClickListener {
         dbHelper=new MyDatabaseHelper(getContext(),"Dati.db",null,1);
         db=dbHelper.getWritableDatabase();
         initView(view);
+        if(readLoginStatus()){
+            User user= DBUtils.getInstance(getContext()).getUserInfo(AnalysisUtils.readLoginUserName(getContext()));
+            textView_jifen.setText(String.valueOf(user.jifen));
+        }
         start();
 
         return view;
@@ -65,7 +80,14 @@ public class PlayFgment extends Fragment implements View.OnClickListener {
         relativeLayout=view.findViewById(R.id.rl_load);
         btn_start_dati=view.findViewById(R.id.btn_start_dati);
         rotateimg=view.findViewById(R.id.image_rotate);
+        textView_jifen=view.findViewById(R.id.play_tv_coin);
         btn_start_dati.setOnClickListener(this);
+//        Intent intent=new Intent();
+//          //用getXxxExtra()取出对应类型的数据。取出String只需要指定key
+//        String jifen=intent.getStringExtra("datijifen");
+//        if (!TextUtils.isEmpty(jifen)){
+//            textView_jifen.setText(jifen);
+//        }
     }
 
     private void start(){
@@ -102,6 +124,26 @@ public class PlayFgment extends Fragment implements View.OnClickListener {
         db.insert("Dati",null,values);
         Log.v("addData","succeed");
         values.clear();
+    }
+
+//    //接收答题获得的积分并显示
+//    @Override
+//    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+//        super.onActivityResult(requestCode, resultCode, data);
+//        if(requestCode==2){
+//            String textjifen = data.getStringExtra("datijifen");
+//            //Toast.makeText(getContext(),textData,Toast.LENGTH_SHORT).show();
+//            textView_jifen.setText(textjifen);
+//
+//        }
+//
+//    }
+
+
+    private boolean readLoginStatus(){
+        SharedPreferences sp= (SharedPreferences) getActivity().getSharedPreferences("loginInfo", Context.MODE_PRIVATE);
+        boolean isLogin=sp.getBoolean("isLogin",false);
+        return isLogin;
     }
 
     class QuestionTask extends AsyncTask<String, Integer, String> {
@@ -146,10 +188,10 @@ public class PlayFgment extends Fragment implements View.OnClickListener {
             super.onPostExecute(result);
             relativeLayout.setVisibility(View.GONE);
             Intent intent=new Intent(getContext(), AnswerPageActivity.class);
-            startActivity(intent);
+            startActivityForResult(intent,3);
             //btn_start_dati.setVisibility(View.VISIBLE);
 
-
+            getActivity().finish();
         }
     }
 

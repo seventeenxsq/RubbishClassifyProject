@@ -213,6 +213,18 @@
             android:textColor="@color/white"
             android:background="@color/colorPrimary"
             />
+        <Button
+            android:id="@+id/rw_btn_exit"
+            android:layout_width="120dp"
+            android:layout_height="50dp"
+            android:text="退  出"
+            android:textSize="24sp"
+            android:visibility="gone"
+            android:layout_marginLeft="20dp"
+            android:layout_centerHorizontal="true"
+            android:textColor="@color/white"
+            android:background="@color/colorPrimary"
+            />
 
     </RelativeLayout>
 
