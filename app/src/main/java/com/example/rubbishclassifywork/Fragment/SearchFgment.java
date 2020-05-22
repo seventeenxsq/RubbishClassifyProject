@@ -117,57 +117,20 @@ public class SearchFgment extends Fragment implements AppBarLayout.OnOffsetChang
                     //with a new query.
                     //这个newQuery就是获取输入的结果
                     //在这里利用newQuery从服务器获取数据
-                    List<RubbishSuggestion> newSuggestions = new ArrayList<>();
-                    String path = "http://106.13.235.119:8081/SearchServerweb/search?name="+newQuery;
-                    URL url = null;
-                    try {
-                        url = new URL(path);
-                    } catch (MalformedURLException e) {
-                        e.printStackTrace();
-                    }
-                    String jsonstr = HttpUtil.doPost(url);
-                    JsonReader reader = null;
-                    if(jsonstr!=null){
-                        reader = new JsonReader(new StringReader(jsonstr));
-                        reader.setLenient(true);
-                        try {
-                            reader.beginArray();
-                            while(reader.hasNext()){
-                                RubbishSuggestion aRubbishSuggestion = new RubbishSuggestion();
-                                reader.beginObject();
-                                while(reader.hasNext()){
-                                    String tagName = reader.nextName();
-                                    if(tagName.equals("name")){
-                                        aRubbishSuggestion.setRubbishName(reader.nextString());
-                                    }
-                                    else if(tagName.equals("kind")){
-                                        aRubbishSuggestion.setRubbishKind(reader.nextInt());
-                                    }
-                                }
-                                newSuggestions.add(aRubbishSuggestion);
-                                reader.endObject();
-                            }
-                            reader.endArray();
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-                    }
+                    List<RubbishSuggestion> newSuggestions = QurySuggestion(newQuery);
+
                     DataHelper.setsRubbishSuggestions(newSuggestions);
                     //在这里进行调用，然后将结果放到了results里面，再把results显示出去
                     DataHelper.findSuggestions(getActivity(), newQuery, 5,
-                            FIND_SUGGESTION_SIMULATED_DELAY, new DataHelper.OnFindSuggestionsListener() {
+                            FIND_SUGGESTION_SIMULATED_DELAY, results -> {
 
-                                @Override
-                                public void onResults(List<RubbishSuggestion> results) {
+                                //this will swap the data and
+                                //render the collapse/expand animations as necessary
+                                mSearchView.swapSuggestions(results);
 
-                                    //this will swap the data and
-                                    //render the collapse/expand animations as necessary
-                                    mSearchView.swapSuggestions(results);
-
-                                    //let the users know that the background
-                                    //process has completed
-                                    mSearchView.hideProgress();
-                                }
+                                //let the users know that the background
+                                //process has completed
+                                mSearchView.hideProgress();
                             });
                 }
 
@@ -219,7 +182,28 @@ public class SearchFgment extends Fragment implements AppBarLayout.OnOffsetChang
             @Override
             public void onSearchAction(String query) {
                 mLastQuery = query;
+                List<RubbishSuggestion> newSuggestions = QurySuggestion(query);
+                if(newSuggestions==null){
 
+                }
+                else if(newSuggestions.size()==1){
+
+                }
+                else {
+                    DataHelper.setsRubbishSuggestions(newSuggestions);
+                    //在这里进行调用，然后将结果放到了results里面，再把results显示出去
+                    DataHelper.findSuggestions(getActivity(), query, 5,
+                            FIND_SUGGESTION_SIMULATED_DELAY, results -> {
+
+                                //this will swap the data and
+                                //render the collapse/expand animations as necessary
+                                mSearchView.swapSuggestions(results);
+
+                                //let the users know that the background
+                                //process has completed
+                                mSearchView.hideProgress();
+                            });
+                }
 //                DataHelper.findColors(getActivity(), query,
 //                        new DataHelper.OnFindColorsListener() {
 //
@@ -466,5 +450,44 @@ public class SearchFgment extends Fragment implements AppBarLayout.OnOffsetChang
 
     public boolean getIsHandleBack(){
         return isHandleBack;
+    }
+
+    public List<RubbishSuggestion> QurySuggestion(String newQuery){
+        String path = "http://106.13.235.119:8081/SearchServerweb/search?name="+newQuery;
+        List<RubbishSuggestion> Suggestions = new ArrayList<>();
+        URL url = null;
+        try {
+            url = new URL(path);
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+        String jsonstr = HttpUtil.doPost(url);
+        JsonReader reader = null;
+        if(jsonstr!=null){
+            reader = new JsonReader(new StringReader(jsonstr));
+            reader.setLenient(true);
+            try {
+                reader.beginArray();
+                while(reader.hasNext()){
+                    RubbishSuggestion aRubbishSuggestion = new RubbishSuggestion();
+                    reader.beginObject();
+                    while(reader.hasNext()){
+                        String tagName = reader.nextName();
+                        if(tagName.equals("name")){
+                            aRubbishSuggestion.setRubbishName(reader.nextString());
+                        }
+                        else if(tagName.equals("kind")){
+                            aRubbishSuggestion.setRubbishKind(reader.nextInt());
+                        }
+                    }
+                    Suggestions.add(aRubbishSuggestion);
+                    reader.endObject();
+                }
+                reader.endArray();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        return Suggestions;
     }
 }
