@@ -149,7 +149,7 @@ public class DetectorActivity extends CameraActivity implements OnImageAvailable
                     @Override
                     public void run() {
                       ///判断阈值反馈结果
-                      if (resultlist.get(0).getConfidence()>0.2){
+                      if (resultlist.get(0).getConfidence()>0.1){
                         setResult(resultlist);
                         setImage(transNameToint(resultlist.get(0).getKind()));
                       }

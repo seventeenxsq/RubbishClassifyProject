@@ -90,8 +90,6 @@ public abstract class CameraActivity extends AppCompatActivity
 /////////////////////////////////////////////////////
 
 
-  // private int category[]={R.mipmap.kehuishou,R.mipmap.ganlaji,R.mipmap.shilaji,R.mipmap.youhailaji};
-
   //################################################################
   String MODEL_PATH = "file:///android_asset/retrained_graph_ali.pb";
 //#################################################################
