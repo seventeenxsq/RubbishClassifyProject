@@ -157,8 +157,7 @@ public class SearchFgment extends Fragment implements AppBarLayout.OnOffsetChang
                     showNormalDialog();
                 }
                 else if(newSuggestions.size()==1){
-                    Log.d(TAG, "onSearchAction: kkkk size = 1");
-                    showResult((RubbishSuggestion) newSuggestions.get(0));
+                    showResult(newSuggestions.get(0));
                 }
                 else {
                     DataHelper.setsRubbishSuggestions(newSuggestions);
