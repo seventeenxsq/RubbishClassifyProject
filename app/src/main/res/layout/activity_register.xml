@@ -1,9 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".RegisterActivity">
+    android:background="@mipmap/earthbackground"
+    tools:context=".LoginActivity">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+    <EditText
+        android:id="@+id/ed_register_user"
+        android:layout_width="fill_parent"
+        android:layout_height="60dp"
+        android:layout_marginLeft="30dp"
+        android:hint="请输入手机号"
+        android:singleLine="true"
+        android:paddingLeft="10dp"
+        android:textSize="20sp"
+        android:background="@drawable/edt_background"
+        android:layout_marginTop="150dp"
+        android:layout_marginRight="30dp"
+        android:drawableLeft="@mipmap/yonghu" />
+
+    <EditText
+        android:id="@+id/ed_register_password"
+        android:layout_width="fill_parent"
+        android:layout_height="60dp"
+        android:layout_below="@id/ed_register_user"
+        android:background="@drawable/edt_background"
+        android:paddingLeft="10dp"
+        android:textSize="20sp"
+        android:singleLine="true"
+        android:hint="请输入密码"
+        android:textColor="@color/black"
+        android:inputType="textPassword"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginRight="30dp"
+        android:drawableLeft="@mipmap/password" />
+    <EditText
+        android:id="@+id/ed_again_password"
+        android:layout_width="fill_parent"
+        android:layout_height="60dp"
+        android:layout_below="@id/ed_register_password"
+        android:background="@drawable/edt_background"
+        android:paddingLeft="10dp"
+        android:textSize="20sp"
+        android:singleLine="true"
+        android:hint="请输入密码"
+        android:textColor="@color/black"
+        android:inputType="textPassword"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginRight="30dp"
+        android:drawableLeft="@mipmap/password" />
+
+    <Button
+        android:id="@+id/register_button"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginRight="30dp"
+        android:text="注      册"
+        android:layout_below="@id/ed_again_password"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:background="@color/colorPrimary"/>
+
+
+
+</RelativeLayout>

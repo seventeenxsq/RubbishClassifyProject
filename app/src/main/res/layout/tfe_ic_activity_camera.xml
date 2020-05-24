@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#00000000">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#00000000"
+        android:orientation="vertical">
+
+        <FrameLayout
+            android:id="@+id/container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@android:color/black"/>
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:layout_alignParentTop="true"
+            android:background="#81364464">
+
+            <ImageView
+                android:layout_width="150dp"
+                android:layout_height="match_parent"
+                android:src="@mipmap/logo"
+                android:layout_marginTop="20dp"/>
+
+        </androidx.appcompat.widget.Toolbar>
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/rectangle"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:text="识     别      结     果"
+            android:textSize="18dp"
+            android:textStyle="bold"
+            android:gravity="center_horizontal"
+            android:textColor="#E40E5E2F"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#272727"/>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="2dp"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:text="垃 圾 名 称："
+                        android:textSize="@dimen/textsize"
+                        android:textStyle="bold"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginLeft="2dp"
+                        />
+
+                    <TextView
+                        android:layout_width="90dp"
+                        android:layout_height="wrap_content"
+                        android:text="垃 圾 种 类："
+                        android:textSize="@dimen/textsize"
+                        android:textStyle="bold"
+                        android:layout_marginTop="5dp"
+
+                        />
+
+
+                    <TextView
+                        android:layout_width="60dp"
+                        android:layout_height="wrap_content"
+                        android:text="置 信 度:"
+                        android:textSize="@dimen/textsize"
+                        android:textStyle="bold"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginLeft="3dp"
+                        />
+
+
+
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="2dp"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:id="@+id/laji_name1"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:text=""
+                        android:textSize="@dimen/textsize"
+                        android:textStyle="bold"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginLeft="2dp"
+                        />
+
+
+                    <TextView
+                        android:id="@+id/laji_kind1"
+                        android:layout_width="90dp"
+                        android:layout_height="wrap_content"
+                        android:text=""
+                        android:textSize="@dimen/textsize"
+                        android:textStyle="bold"
+                        android:layout_marginTop="5dp"
+
+                        />
+
+
+                    <TextView
+                        android:id="@+id/laji_confidence1"
+                        android:layout_width="60dp"
+                        android:layout_height="wrap_content"
+                        android:text=""
+                        android:textSize="@dimen/textsize"
+                        android:textStyle="bold"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginLeft="3dp"
+                        />
+
+
+
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="2dp"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:id="@+id/laji_name2"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:text=""
+                        android:textSize="13dp"
+                        android:textStyle="bold"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginLeft="2dp"
+                        />
+
+
+                    <TextView
+                        android:id="@+id/laji_kind2"
+                        android:layout_width="90dp"
+                        android:layout_height="wrap_content"
+                        android:text=""
+                        android:textSize="13dp"
+                        android:textStyle="bold"
+                        android:layout_marginTop="5dp"
+
+                        />
+
+
+                    <TextView
+                        android:id="@+id/laji_confidence2"
+                        android:layout_width="60dp"
+                        android:layout_height="wrap_content"
+                        android:text=""
+                        android:textSize="13dp"
+                        android:textStyle="bold"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginLeft="3dp"
+                        />
+
+
+
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="2dp"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:id="@+id/laji_name3"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:text=""
+                        android:textSize="13dp"
+                        android:textStyle="bold"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginLeft="2dp"
+                        />
+
+
+                    <TextView
+                        android:id="@+id/laji_kind3"
+                        android:layout_width="90dp"
+                        android:layout_height="wrap_content"
+                        android:text=""
+                        android:textSize="13dp"
+                        android:textStyle="bold"
+                        android:layout_marginTop="5dp"
+
+                        />
+
+
+                    <TextView
+                        android:id="@+id/laji_confidence3"
+                        android:layout_width="60dp"
+                        android:layout_height="wrap_content"
+                        android:text=""
+                        android:textSize="13dp"
+                        android:textStyle="bold"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginLeft="3dp"
+                        />
+
+
+
+
+                </LinearLayout>
+
+
+
+
+
+
+
+            </LinearLayout>
+
+
+
+            <ImageView
+                android:id="@+id/im_rubbishpic"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="5dp"
+                android:src="#262626"
+                android:layout_marginRight="40dp"/>
+
+            <Button
+                android:id="@+id/btn_fankui"
+                android:layout_width="190dp"
+                android:layout_height="50dp"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="5dp"
+               android:layout_centerHorizontal="true"
+                android:background="@drawable/rectangkuang"
+                android:layout_marginRight="20dp"
+                android:text="识 别 有 误？点 我 反 馈"/>
+
+
+
+        </RelativeLayout>
+    </LinearLayout>
+</RelativeLayout>

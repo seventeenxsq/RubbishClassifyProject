@@ -31,6 +31,7 @@
 
 
         <ImageView
+            android:id="@+id/news_pic"
             android:layout_width="100dp"
             android:layout_height="84dp"
             android:padding="10dp"

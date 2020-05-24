@@ -19,18 +19,18 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/white_btn_top"
-            android:textColor="@color/themegreen"
+            android:textColor="@color/colorPrimary"
             android:text="拍照"/>
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="@color/themegreen"/>
+            android:background="@color/colorPrimary"/>
         <Button
             android:id="@+id/icon_btn_select"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/white_btn_bottom"
-            android:textColor="@color/themegreen"
+            android:textColor="@color/colorPrimary"
             android:text="从相册选择"/>
         <Button
             android:id="@+id/icon_btn_cancel"
@@ -39,7 +39,7 @@
             android:layout_marginTop="10dp"
             android:layout_marginBottom="15dp"
             android:background="@drawable/white_btn"
-            android:textColor="@color/themegreen"
+            android:textColor="@color/colorPrimary"
             android:text="取消"/>
     </LinearLayout>
 

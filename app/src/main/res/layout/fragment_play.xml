@@ -14,11 +14,17 @@
             android:src="@mipmap/earthbackground"
             android:scaleType="centerCrop"
             />
+
         <ImageView
             android:id="@+id/image_rotate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@mipmap/roearth"/>
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginEnd="0dp"
+            android:layout_marginBottom="0dp"
+            android:src="@mipmap/roearth" />
+
         <ImageView
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
@@ -52,8 +58,7 @@
                     android:src="@mipmap/coin"
                     />
                 <TextView
-                    android:id="@+id/tv_coin"
-
+                    android:id="@+id/play_tv_coin"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="100"
@@ -75,6 +80,7 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginBottom="80dp"
                 />
+
 
 
         </RelativeLayout>
