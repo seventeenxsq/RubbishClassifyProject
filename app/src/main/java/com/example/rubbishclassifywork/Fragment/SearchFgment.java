@@ -196,7 +196,7 @@ public class SearchFgment extends Fragment implements AppBarLayout.OnOffsetChang
                 //show suggestions when search bar gains focus (typically history suggestions)
                 //显示搜索历史，所以修改getHistory就行
                 mSearchView.swapSuggestions(DataHelper.getHistory(getActivity(), 5));
-//                onBackPressed();
+                onBackPressed();
 
                 Log.d(TAG, "onFocus()");
             }
