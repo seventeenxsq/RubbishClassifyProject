@@ -2,8 +2,10 @@
 #### APP name:见圾行事
 共分为： 实时识别、手动搜索、闯关答题、个人中心4个模块
 
-本软件利用mobilenet网络训练分类器
+本软件主要功能为进行实时垃圾物品的识别与分类结果反馈
 
- 通过tensorflow Mobile框架将训练的pb模型，在Android设备上使用
+利用mobilenet网络训练分类器
+
+通过tensorflow Mobile框架将训练的pb模型，在Android设备上使用
  
 单次识别时间<500ms
