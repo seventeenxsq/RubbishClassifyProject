@@ -19,4 +19,5 @@
         <item>NNAPI</item>
     </string-array>
     <string name="tfe_od_camera_error" translation_description="Error regarding camera support[CHAR_LIMIT=40]">This device doesn\'t support Camera2 API.</string>
+    <string name="confirButton">确定</string>
 </resources>

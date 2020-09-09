@@ -16,6 +16,7 @@ import com.example.rubbishclassifywork.HelperClass.Icon;
 import com.example.rubbishclassifywork.HelperClass.MyAdapter;
 import com.example.rubbishclassifywork.HelperClass.PersionInfo;
 import com.example.rubbishclassifywork.R;
+import com.sdsmdg.tastytoast.TastyToast;
 
 import java.util.ArrayList;
 
@@ -56,6 +57,7 @@ public class StoreFragment extends Fragment {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 switch (position){
                     case 1:
+                        TastyToast.makeText(getContext(), "兑换成功", TastyToast.LENGTH_LONG, TastyToast.SUCCESS);
 
                 }
             }

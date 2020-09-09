@@ -3,8 +3,13 @@ package com.example.rubbishclassifywork;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -15,10 +20,16 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.OnBackPressedDispatcher;
-
 import com.example.rubbishclassifywork.HelperClass.AnalysisUtils;
 import com.example.rubbishclassifywork.HelperClass.DBUtils;
+import com.example.rubbishclassifywork.HelperClass.HttpUtil;
 import com.example.rubbishclassifywork.HelperClass.MyDatabaseHelper;
+import java.io.BufferedInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.URLConnection;
 
 public class AnswerPageActivity extends BaseActivity implements View.OnClickListener {
     private TextView tv_question_type,tv_question,tv_istrue,tv_explain,tv_question_count,tv_time_count;
@@ -44,7 +55,7 @@ public class AnswerPageActivity extends BaseActivity implements View.OnClickList
         cursor.moveToFirst();
         init();
         initView();
-        showData();
+        showData(count);
 
 
     }
@@ -174,9 +185,9 @@ public class AnswerPageActivity extends BaseActivity implements View.OnClickList
             @Override
             public void onClick(View v) {
                 optionIsClick();
-                iv_img.setImageResource(R.mipmap.xiangpini);
-               if (count>10){
-                    if (right_count>=8){
+
+               if (count>5){
+                    if (right_count>=4){
                         //Toast.makeText(AnswerPageActivity.this,right_count,Toast.LENGTH_SHORT).show();
                         Intent intent2=new Intent(AnswerPageActivity.this,RewardActivity.class);
                         intent2.putExtra("datijifen",jifen);
@@ -185,13 +196,16 @@ public class AnswerPageActivity extends BaseActivity implements View.OnClickList
                         overridePendingTransition(R.anim.rotate_in, R.anim.rotate_out);
                    }else {
                         DBUtils.getInstance(AnswerPageActivity.this).updateUserInfo("jifen",String.valueOf(jifen),phone_number);
+                        String spUserName=AnalysisUtils.readLoginUserName(getApplicationContext());
+                        String url="http://106.13.235.119:8080/Server/ChangeJifenServlet?username="+ spUserName+ "&jifen=" + String.valueOf(right_count*15);
+                        new AnswerPageActivity.ChangejifenTask().execute(url);
                         startActivity(new Intent(AnswerPageActivity.this,MainActivity.class));
                         finish();
                    }
 
                 }
                 cursor.moveToNext();
-                showData();
+                showData(count);
             }
         });
 
@@ -215,9 +229,8 @@ public class AnswerPageActivity extends BaseActivity implements View.OnClickList
             @Override
             public void onClick(View v) {
                 optionIsClick();
-                iv_img.setImageResource(R.mipmap.xiangpini);
-                if (count>10){
-                    if (right_count>=8){
+                if (count>5){
+                    if (right_count>=4){
                         //Toast.makeText(AnswerPageActivity.this,right_count,Toast.LENGTH_SHORT).show();
                         Intent intent1=new Intent(AnswerPageActivity.this,RewardActivity.class);
                         intent1.putExtra("datijifen",jifen);
@@ -232,13 +245,13 @@ public class AnswerPageActivity extends BaseActivity implements View.OnClickList
 
                }
                 cursor.moveToNext();
-                showData();
+                showData(count);
             }
         });
 
     }
 
-    private void showData(){
+    private void showData(int i){
         radioGroup.clearCheck();
         timerStart();
         btn_next.setVisibility(View.GONE);
@@ -251,7 +264,9 @@ public class AnswerPageActivity extends BaseActivity implements View.OnClickList
         optionB.setText(cursor.getString(cursor.getColumnIndex("answer2")));
         optionC.setText(cursor.getString(cursor.getColumnIndex("answer3")));
         optionD.setText(cursor.getString(cursor.getColumnIndex("answer4")));
-        tv_question_count.setText(String.valueOf(count)+"/10");
+        iv_img.setImageBitmap(getImageBitmap(cursor.getString(cursor.getColumnIndex("url"))));
+        Log.v("url",cursor.getString(cursor.getColumnIndex("url")));
+        tv_question_count.setText(String.valueOf(count)+"/5");
     }
 
     public String formatTime(long millisecond) {
@@ -287,4 +302,55 @@ public class AnswerPageActivity extends BaseActivity implements View.OnClickList
     public void timerStart() {
         timer.start();
     }
+
+    /**
+     * 获取网路图片
+     * @param url
+     * @return
+     */
+    private Bitmap getImageBitmap(String url) {
+        Bitmap bm = null;
+        try {
+            URL aURL = new URL(url);
+            URLConnection conn = aURL.openConnection();
+            conn.connect();
+            InputStream is = conn.getInputStream();
+            BufferedInputStream bis = new BufferedInputStream(is);
+            bm = BitmapFactory.decodeStream(bis);
+            bis.close();
+            is.close();
+        } catch (IOException e) {
+            Log.e("TAG", "Error getting bitmap", e);
+        }
+        return bm;
+    }
+    class ChangejifenTask extends AsyncTask<String, Integer, String> {
+        @Override
+        protected String doInBackground(String... params) {
+            String par = params[0];
+            URL url = null;
+            try {
+                url = new URL(par);
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            }
+            String result = HttpUtil.doPost(url);
+            return result;
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            super.onPostExecute(result);
+            //保存数据
+            if (!result.equals("1")) {
+                Toast.makeText(getApplicationContext(), "积分上传失败", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(getApplicationContext(), "积分上传成功", Toast.LENGTH_SHORT).show();
+
+            }
+
+        }
+    }
+
+
 }

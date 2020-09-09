@@ -66,8 +66,16 @@ public class PlayFgment extends Fragment implements View.OnClickListener {
         db=dbHelper.getWritableDatabase();
         initView(view);
         if(readLoginStatus()){
+            //从服务器读取积分数据
             User user= DBUtils.getInstance(getContext()).getUserInfo(AnalysisUtils.readLoginUserName(getContext()));
-            textView_jifen.setText(String.valueOf(user.jifen));
+            String url_1 = "http://106.13.235.119:8080/Server/MyJifenServlet?username="+user.userName;
+            if(user==null){
+                Toast.makeText(getContext(),"请先登录",Toast.LENGTH_SHORT).show();
+            }else {
+                new PlayFgment.GetjifenTask().execute(url_1);
+            }
+        }else {
+            Toast.makeText(getContext(),"请先登录",Toast.LENGTH_SHORT).show();
         }
         start();
 
@@ -108,10 +116,11 @@ public class PlayFgment extends Fragment implements View.OnClickListener {
         }
     }
 
-    public void addDatas(String titlenum,String question,String choose1,String choose2,String choose3,String choose4,String answer,String explain){
+    public void addDatas(String titlenum,String question,String choose1,String choose2,String choose3,String choose4,String answer,String explain,String url){
         //获取读写权限 是用SQLite数据库对象来操作
         ContentValues values=new ContentValues();
-        Log.e("addData",answer);
+        Log.v("addData",answer);
+        Log.v("addData",url);
         //组装数据
         values.put("question",question);
         values.put("titlenum",titlenum);
@@ -121,6 +130,7 @@ public class PlayFgment extends Fragment implements View.OnClickListener {
         values.put("answer4",choose4);
         values.put("answer",answer);
         values.put("explains",explain);
+        values.put("url",url);
         db.insert("Dati",null,values);
         Log.v("addData","succeed");
         values.clear();
@@ -176,7 +186,7 @@ public class PlayFgment extends Fragment implements View.OnClickListener {
 //                    e.printStackTrace();
 //                }
                 addDatas("第"+String.valueOf(questions.get(i).getId())+"题",questions.get(i).getTitle(),questions.get(i).getOptionA(),questions.get(i).getOptionB()
-                        ,questions.get(i).getOptionC(),questions.get(i).getOptionD(),questions.get(i).getAnswer(),questions.get(i).getExplain());
+                        ,questions.get(i).getOptionC(),questions.get(i).getOptionD(),questions.get(i).getAnswer(),questions.get(i).getExplain(),questions.get(i).getUrl());
             }
             Log.v("title",questions.get(1).getTitle().toString());
             return result;
@@ -192,6 +202,37 @@ public class PlayFgment extends Fragment implements View.OnClickListener {
             //btn_start_dati.setVisibility(View.VISIBLE);
 
             getActivity().finish();
+        }
+    }
+
+    class GetjifenTask extends AsyncTask<String, Integer, String> {
+        @Override
+        protected String doInBackground(String... params) {
+            String par = params[0];
+            URL url = null;
+            try {
+                url = new URL(par);
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            }
+            String result = HttpUtil.doPost(url);
+            return result;
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            super.onPostExecute(result);
+            //保存数据
+            if (!result.equals(-1)) {
+                textView_jifen.setText(String.valueOf(result));
+
+            } else {
+                if (result.equals("-1")) {
+                    Toast.makeText(getContext(), "积分获取失败", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+            }
+
         }
     }
 

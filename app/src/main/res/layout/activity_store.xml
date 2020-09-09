@@ -18,7 +18,7 @@
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
             android:text="积分商城"
-            android:textColor="@color/themegreen"
+            android:textColor="@color/colorPrimary"
             android:textSize="20sp" />
         <LinearLayout
             android:id="@+id/coin"
@@ -37,11 +37,10 @@
                 android:src="@mipmap/coin"
                 />
             <TextView
-                android:id="@+id/tv_coin"
-
+                android:id="@+id/tv_jifen"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="100"
+                android:text="0"
                 />
 
         </LinearLayout>

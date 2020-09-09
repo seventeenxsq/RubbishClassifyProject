@@ -3,6 +3,7 @@ package com.example.rubbishclassifywork.Fragment;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.text.TextUtils;
@@ -25,6 +26,7 @@ import com.example.rubbishclassifywork.HelperClass.AnalysisUtils;
 import com.example.rubbishclassifywork.HelperClass.ContentAdapter;
 import com.example.rubbishclassifywork.HelperClass.ContentModel;
 import com.example.rubbishclassifywork.HelperClass.DBUtils;
+import com.example.rubbishclassifywork.HelperClass.HttpUtil;
 import com.example.rubbishclassifywork.HelperClass.ListInfoAdapter;
 import com.example.rubbishclassifywork.HelperClass.PhotoPopupWindow;
 import com.example.rubbishclassifywork.HelperClass.User;
@@ -32,6 +34,8 @@ import com.example.rubbishclassifywork.LoginActivity;
 import com.example.rubbishclassifywork.R;
 import com.example.rubbishclassifywork.StoreActivity;
 
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -46,7 +50,7 @@ public class MeFgment extends Fragment implements View.OnClickListener {
     private ListView listView,listView_head;
     private ContentAdapter madapter;
     private ListInfoAdapter listInfoAdapter;
-    private TextView tv_login,tv_phonenumber;
+    private TextView tv_login,tv_phonenumber,tv_jifen,tv_chenghao;
     private String spphonenumber,spusername;
 
     @Override//将fragment与布局文件联系起来
@@ -55,14 +59,24 @@ public class MeFgment extends Fragment implements View.OnClickListener {
         View view=inflater.inflate(R.layout.fragment_me,container,false);
         initData();
         initView(view);
+        show_info();
+        return view;
+    }
+
+    private void show_info(){
         if(readLoginStatus()){
             tv_login.setText("见圾行事");
             tv_phonenumber.setText("手机号:"+AnalysisUtils.readLoginUserName(getContext()));
+            User bean=null;
+            bean= DBUtils.getInstance(getContext()).getUserInfo(spphonenumber);
+            String url_1 = "http://106.13.235.119:8080/Server/MyJifenServlet?username="+bean.userName;
+            new MeFgment.GetjifenTask().execute(url_1);
+        }else {
+            Toast.makeText(getContext(),"请先登录",Toast.LENGTH_SHORT).show();
         }
         Glide.with(getContext()).load(R.drawable.lemonicon)
                 .bitmapTransform(new CropCircleTransformation(getContext()))
                 .into(avatarImageView);
-        return view;
     }
 
     private void initView(View view) {
@@ -71,12 +85,14 @@ public class MeFgment extends Fragment implements View.OnClickListener {
         tv_phonenumber=view.findViewById(R.id.tv_phonenumber);
         tv_login=view.findViewById(R.id.nick_name);
         avatarImageView=view.findViewById(R.id.h_head);
-        listView_head=view.findViewById(R.id.lv_nobtn);
+        //listView_head=view.findViewById(R.id.lv_nobtn);
         listView=view.findViewById(R.id.lv_info);
         madapter=new ContentAdapter(getActivity(),mlist);
+        tv_jifen=view.findViewById(R.id.jifen_text_info);
+        tv_chenghao=view.findViewById(R.id.chenghao_text_info);
         listView.setAdapter(madapter);
         listInfoAdapter=new ListInfoAdapter(getActivity(),listInfoAdapters);
-        listView_head.setAdapter(listInfoAdapter);
+        //listView_head.setAdapter(listInfoAdapter);
         avatarImageView.setOnClickListener(this);
         tv_login.setOnClickListener(this);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -117,7 +133,7 @@ public class MeFgment extends Fragment implements View.OnClickListener {
             bean.nickName="环保小卫士";
             bean.sex="男";
             bean.signature="创意生活 文明分类";
-            bean.jifen=0;
+            bean.jifen="0";
             DBUtils.getInstance(getContext()).saveUserInfo(bean);
         }
 
@@ -186,7 +202,42 @@ public class MeFgment extends Fragment implements View.OnClickListener {
                 startActivityForResult(intent,1);
                 break;
         }
+    }
 
+    class GetjifenTask extends AsyncTask<String, Integer, String> {
+        @Override
+        protected String doInBackground(String... params) {
+            String par = params[0];
+            URL url = null;
+            try {
+                url = new URL(par);
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            }
+            String result = HttpUtil.doPost(url);
+            return result;
+        }
 
+        @Override
+        protected void onPostExecute(String result) {
+            super.onPostExecute(result);
+            //保存数据
+            if (!result.equals(-1)) {
+                tv_jifen.setText(String.valueOf(result));
+                int jifen=Integer.parseInt(result);
+                if(jifen>50){
+                    tv_chenghao.setText("分类小能手");
+                }else {
+                    tv_chenghao.setText("分类小萌新");
+                }
+
+            } else {
+                if (result.equals("-1")) {
+                    Toast.makeText(getContext(), "积分获取失败", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+            }
+
+        }
     }
 }

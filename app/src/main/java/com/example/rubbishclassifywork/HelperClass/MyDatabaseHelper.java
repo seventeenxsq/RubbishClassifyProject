@@ -19,6 +19,7 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
             +"answer3 text, "
             +"answer4 text,"
             +"answer text,"
+            +"url text,"
             +"explains text)";
 
     //传输上下文参数

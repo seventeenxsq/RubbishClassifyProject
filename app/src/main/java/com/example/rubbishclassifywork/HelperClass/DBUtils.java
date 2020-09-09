@@ -44,7 +44,7 @@ public class DBUtils {
             bean.nickName=cursor.getString(cursor.getColumnIndex("nickName"));
             bean.sex=cursor.getString(cursor.getColumnIndex("sex"));
             bean.signature=cursor.getString(cursor.getColumnIndex("signature"));
-            bean.jifen=Integer.valueOf(cursor.getString(cursor.getColumnIndex("jifen")));
+            bean.jifen=cursor.getString(cursor.getColumnIndex("jifen"));
         }
         cursor.close();
         return bean;

@@ -3,15 +3,24 @@ package com.example.rubbishclassifywork.HelperClass;
 public class User {
     public String userName;
     public String nickName;
+    private String password;
     public String sex;
     public String signature;
-    public int jifen;
+    public String jifen;
 
-    public int getJifen() {
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getJifen() {
         return jifen;
     }
 
-    public void setJifen(int jifen) {
+    public void setJifen(String jifen) {
         this.jifen = jifen;
     }
 

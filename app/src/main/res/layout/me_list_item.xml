@@ -20,7 +20,6 @@
             android:layout_gravity="center_vertical"
             />
 
-
         <TextView
             android:id="@+id/item_text"
             android:layout_width="wrap_content"
@@ -31,9 +30,6 @@
             android:textSize="20dp"/>
 
     </LinearLayout>
-
-
-
 
     <TextView
         android:id="@+id/item_text_info"

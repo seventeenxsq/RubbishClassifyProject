@@ -60,21 +60,14 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                 }else if(string_password.equals("")){
                     Toast.makeText(LoginActivity.this, "请输入密码", Toast.LENGTH_SHORT).show();
                 }else {
-                    //保存登录状态和登录的用户名
-                    saveLoginStatus(true,string_phone_number);
-                    //把登录成功的状态传递到MainActivity中
-
-                    Intent phone = new Intent();
-                    phone.putExtra("textData",string_phone_number);
-                    setResult(RESULT_OK,phone);
-//                    Intent data = new Intent();
-//                    data.putExtra("isLogin",true);
-//                    setResult(RESULT_OK,data);
-                    initUserData(string_phone_number);
-                    LoginActivity.this.finish();
                     /*
                         上传服务器代码
                      */
+                    String url = "http://106.13.235.119:8080/Server/MyServer?username=" + string_phone_number+ "&password=" + string_password;
+                    new LoginActivity.LoginTask().execute(url);
+
+
+
                 }
         }
     }
@@ -88,7 +81,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
             bean.nickName="环保小卫士";
             bean.sex="男";
             bean.signature="创意生活 文明分类";
-            bean.jifen=0;
+            bean.jifen="0";
             DBUtils.getInstance(this).saveUserInfo(bean);
         }
     }
@@ -137,9 +130,14 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                 //保存登录状态和登录的用户名
                 saveLoginStatus(true,string_phone_number);
                 //把登录成功的状态传递到MainActivity中
-                Intent data = new Intent();
-                data.putExtra("isLogin",true);
-                setResult(RESULT_OK,data);
+
+                Intent phone = new Intent();
+                phone.putExtra("textData",string_phone_number);
+                setResult(RESULT_OK,phone);
+//                    Intent data = new Intent();
+//                    data.putExtra("isLogin",true);
+//                    setResult(RESULT_OK,data);
+                initUserData(string_phone_number);
                 LoginActivity.this.finish();
                 return;
 

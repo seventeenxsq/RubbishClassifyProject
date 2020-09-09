@@ -10,13 +10,14 @@
         android:roundIcon="@mipmap/icon_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".UserInfoActivity"></activity>
+        <activity android:name=".SummaryActivity"></activity>
+        <activity android:name=".UserInfoActivity" />
         <activity android:name=".RegisterActivity" />
         <activity android:name=".LoginActivity" />
         <activity android:name=".RewardActivity" />
         <activity android:name=".StoreActivity" />
-        <activity android:name=".InfoActivity"/>
-        <activity android:name=".DetectorActivity"/>
+        <activity android:name=".InfoActivity" />
+        <activity android:name=".DetectorActivity" />
         <activity android:name=".AnswerPageActivity" />
         <activity android:name=".WelcomeActivity">
             <intent-filter>
@@ -27,9 +28,8 @@
         </activity>
         <activity android:name=".MainActivity" />
     </application>
-
-
     <uses-feature android:name="android.hardware.camera" />
+
     <uses-feature android:name="android.hardware.camera.autofocus" />
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
@@ -41,6 +41,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.PERMISSIONNAME" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
     <uses-permission android:name="android.permission.VIBRATE" />
 
 </manifest>

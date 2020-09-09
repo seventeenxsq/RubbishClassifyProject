@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -15,7 +16,12 @@ import android.widget.Toast;
 
 import com.example.rubbishclassifywork.HelperClass.AnalysisUtils;
 import com.example.rubbishclassifywork.HelperClass.DBUtils;
+import com.example.rubbishclassifywork.HelperClass.HttpUtil;
 import com.sdsmdg.tastytoast.TastyToast;
+
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.regex.Pattern;
 
 public class RewardActivity extends BaseActivity implements View.OnClickListener{
 
@@ -63,6 +69,13 @@ public class RewardActivity extends BaseActivity implements View.OnClickListener
     }
 
     @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent intent=new Intent(this,MainActivity.class);
+        startActivity(intent);
+    }
+
+    @Override
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.rw_btn_upload:
@@ -72,6 +85,9 @@ public class RewardActivity extends BaseActivity implements View.OnClickListener
                 button_exit.setVisibility(View.VISIBLE);
 //                Toast.makeText(this,phone_number,Toast.LENGTH_SHORT).show();
                 int i=jifen+40;
+                String spUserName=AnalysisUtils.readLoginUserName(getApplicationContext());
+                String url="http://106.13.235.119:8080/Server/ChangeJifenServlet?username="+ spUserName+ "&jifen=" + String.valueOf(i);
+                new RewardActivity.ChangejifenTask().execute(url);
                 DBUtils.getInstance(this).updateUserInfo("jifen",String.valueOf(i),phone_number);
                 TastyToast.makeText(getApplicationContext(), "Thank You!", TastyToast.LENGTH_LONG, TastyToast.SUCCESS);
                 break;
@@ -80,6 +96,34 @@ public class RewardActivity extends BaseActivity implements View.OnClickListener
                 startActivity(intent);
                 finish();
                 break;
+        }
+    }
+
+    class ChangejifenTask extends AsyncTask<String, Integer, String> {
+        @Override
+        protected String doInBackground(String... params) {
+            String par = params[0];
+            URL url = null;
+            try {
+                url = new URL(par);
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            }
+            String result = HttpUtil.doPost(url);
+            return result;
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            super.onPostExecute(result);
+            //保存数据
+            if (!result.equals("1")) {
+                Toast.makeText(getApplicationContext(), "积分上传失败", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(getApplicationContext(), "积分上传成功", Toast.LENGTH_SHORT).show();
+
+            }
+
         }
     }
 }
