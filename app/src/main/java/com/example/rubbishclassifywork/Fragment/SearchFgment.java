@@ -3,6 +3,8 @@ package com.example.rubbishclassifywork.Fragment;
 import android.animation.Animator;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Html;
@@ -17,6 +19,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.core.content.res.ResourcesCompat;
@@ -117,57 +120,20 @@ public class SearchFgment extends Fragment implements AppBarLayout.OnOffsetChang
                     //with a new query.
                     //这个newQuery就是获取输入的结果
                     //在这里利用newQuery从服务器获取数据
-                    List<RubbishSuggestion> newSuggestions = new ArrayList<>();
-                    String path = "http://106.13.235.119:8081/SearchServerweb/search?name="+newQuery;
-                    URL url = null;
-                    try {
-                        url = new URL(path);
-                    } catch (MalformedURLException e) {
-                        e.printStackTrace();
-                    }
-                    String jsonstr = HttpUtil.doPost(url);
-                    JsonReader reader = null;
-                    if(jsonstr!=null){
-                        reader = new JsonReader(new StringReader(jsonstr));
-                        reader.setLenient(true);
-                        try {
-                            reader.beginArray();
-                            while(reader.hasNext()){
-                                RubbishSuggestion aRubbishSuggestion = new RubbishSuggestion();
-                                reader.beginObject();
-                                while(reader.hasNext()){
-                                    String tagName = reader.nextName();
-                                    if(tagName.equals("name")){
-                                        aRubbishSuggestion.setRubbishName(reader.nextString());
-                                    }
-                                    else if(tagName.equals("kind")){
-                                        aRubbishSuggestion.setRubbishKind(reader.nextInt());
-                                    }
-                                }
-                                newSuggestions.add(aRubbishSuggestion);
-                                reader.endObject();
-                            }
-                            reader.endArray();
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-                    }
+                    List<RubbishSuggestion> newSuggestions = QurySuggestion(newQuery);
+
                     DataHelper.setsRubbishSuggestions(newSuggestions);
                     //在这里进行调用，然后将结果放到了results里面，再把results显示出去
                     DataHelper.findSuggestions(getActivity(), newQuery, 5,
-                            FIND_SUGGESTION_SIMULATED_DELAY, new DataHelper.OnFindSuggestionsListener() {
+                            FIND_SUGGESTION_SIMULATED_DELAY, results -> {
 
-                                @Override
-                                public void onResults(List<RubbishSuggestion> results) {
+                                //this will swap the data and
+                                //render the collapse/expand animations as necessary
+                                mSearchView.swapSuggestions(results);
 
-                                    //this will swap the data and
-                                    //render the collapse/expand animations as necessary
-                                    mSearchView.swapSuggestions(results);
-
-                                    //let the users know that the background
-                                    //process has completed
-                                    mSearchView.hideProgress();
-                                }
+                                //let the users know that the background
+                                //process has completed
+                                mSearchView.hideProgress();
                             });
                 }
 
@@ -180,46 +146,34 @@ public class SearchFgment extends Fragment implements AppBarLayout.OnOffsetChang
             //点击之后在这里
             public void onSuggestionClicked(final SearchSuggestion searchSuggestion) {
 
-                RubbishSuggestion rubbishSuggestion = (RubbishSuggestion) searchSuggestion;
-                DataHelper.changeHistory(rubbishSuggestion);
-
-                //关闭软键盘
-                InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(getContext().INPUT_METHOD_SERVICE);
-                imm.hideSoftInputFromWindow(getActivity().getCurrentFocus().getWindowToken(), 0); //强制隐藏键盘
-
-//                Log.d(TAG, "onSuggestionClicked: dddd " + rubbishSuggestion.getBody());
-                //点击之后，searchSuggestion就是选择的结果,根据kind选择界面，关闭搜索栏
-                rubf.setVisibility(View.VISIBLE);
-                rubd.setVisibility(View.VISIBLE);
-                ObjectAnimator animator1 = ObjectAnimator.ofFloat(rubf,"translationY",0f,-1800f);
-                ObjectAnimator animator2 = ObjectAnimator.ofFloat(rubf,"translationY",-1800f,0f);
-                ObjectAnimator animator3 = ObjectAnimator.ofFloat(rubd,"translationY",0f,1800f);
-                ObjectAnimator animator4 = ObjectAnimator.ofFloat(rubd,"translationY",1800f,0f);
-                ObjectAnimator animatorSearch = ObjectAnimator.ofFloat(mSearchView,"translationY",0f,-180f);
-                ObjectAnimator animatorBaseChar = ObjectAnimator.ofFloat(baseChar,"alpha",1f,0f);
-                animator1.setDuration(1);
-                animator2.setDuration(1000);
-                animator3.setDuration(1);
-                animator4.setDuration(1000);
-                animatorSearch.setDuration(1000);
-                animatorBaseChar.setDuration(1000);
-                AnimatorSet set1 = new AnimatorSet();
-                set1.play(animator1).with(animator2).with(animator3).with(animator4).with(animatorSearch).with(animatorBaseChar);
-                set1.start();
-                rubName.setText(rubbishSuggestion.getRubbishName());
-                ChangeByKind(rubbishSuggestion.getRubbishKind());
-
-                //这下面是只需要点击一次的关键，利用一个Flag来进行区分
-                clickFlag = true;
-                isHandleBack = true;    //在有这个界面的时候，才需要返回
-                mSearchView.setSearchText(rubbishSuggestion.getRubbishName());
-                mSearchView.clearSuggestions();
+                showResult((RubbishSuggestion) searchSuggestion);
             }
 
             @Override
             public void onSearchAction(String query) {
                 mLastQuery = query;
+                List<RubbishSuggestion> newSuggestions = QurySuggestion(query);
+                if(newSuggestions.size()==0){
+                    showNormalDialog();
+                }
+                else if(newSuggestions.size()==1){
+                    showResult(newSuggestions.get(0));
+                }
+                else {
+                    DataHelper.setsRubbishSuggestions(newSuggestions);
+                    //在这里进行调用，然后将结果放到了results里面，再把results显示出去
+                    DataHelper.findSuggestions(getActivity(), query, 5,
+                            FIND_SUGGESTION_SIMULATED_DELAY, results -> {
 
+                                //this will swap the data and
+                                //render the collapse/expand animations as necessary
+                                mSearchView.swapSuggestions(results);
+
+                                //let the users know that the background
+                                //process has completed
+                                mSearchView.hideProgress();
+                            });
+                }
 //                DataHelper.findColors(getActivity(), query,
 //                        new DataHelper.OnFindColorsListener() {
 //
@@ -241,6 +195,7 @@ public class SearchFgment extends Fragment implements AppBarLayout.OnOffsetChang
                 //show suggestions when search bar gains focus (typically history suggestions)
                 //显示搜索历史，所以修改getHistory就行
                 mSearchView.swapSuggestions(DataHelper.getHistory(getActivity(), 5));
+                onBackPressed();
 
                 Log.d(TAG, "onFocus()");
             }
@@ -466,5 +421,95 @@ public class SearchFgment extends Fragment implements AppBarLayout.OnOffsetChang
 
     public boolean getIsHandleBack(){
         return isHandleBack;
+    }
+
+    public List<RubbishSuggestion> QurySuggestion(String newQuery){
+        String path = "http://106.13.235.119:8081/SearchServerweb/search?name="+newQuery;
+        List<RubbishSuggestion> Suggestions = new ArrayList<>();
+        URL url = null;
+        try {
+            url = new URL(path);
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+        String jsonstr = HttpUtil.doPost(url);
+        JsonReader reader;
+        assert jsonstr != null;
+        if(!jsonstr.equals("[]")){
+            Log.d(TAG, "QurySuggestion: kkkk " + jsonstr);
+            reader = new JsonReader(new StringReader(jsonstr));
+            reader.setLenient(true);
+            try {
+                reader.beginArray();
+                while(reader.hasNext()){
+                    RubbishSuggestion aRubbishSuggestion = new RubbishSuggestion();
+                    reader.beginObject();
+                    while(reader.hasNext()){
+                        String tagName = reader.nextName();
+                        if(tagName.equals("name")){
+                            aRubbishSuggestion.setRubbishName(reader.nextString());
+                        }
+                        else if(tagName.equals("kind")){
+                            aRubbishSuggestion.setRubbishKind(reader.nextInt());
+                        }
+                    }
+                    Suggestions.add(aRubbishSuggestion);
+                    reader.endObject();
+                }
+                reader.endArray();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        return Suggestions;
+    }
+    private void showNormalDialog(){
+        AlertDialog alertDialog1 = new AlertDialog.Builder(getContext())
+                .setTitle("提示")//标题
+                .setMessage("暂时没有这个垃圾，我们会尽快补充词条的！")//内容
+                .setNegativeButton("确定", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                    }
+                })
+                .create();
+        alertDialog1.show();
+    }
+
+    private void showResult(RubbishSuggestion searchSuggestion){
+        RubbishSuggestion rubbishSuggestion = searchSuggestion;
+        DataHelper.changeHistory(rubbishSuggestion);
+
+        //关闭软键盘
+        InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(getContext().INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(getActivity().getCurrentFocus().getWindowToken(), 0); //强制隐藏键盘
+
+//                Log.d(TAG, "onSuggestionClicked: dddd " + rubbishSuggestion.getBody());
+        //点击之后，searchSuggestion就是选择的结果,根据kind选择界面，关闭搜索栏
+        rubf.setVisibility(View.VISIBLE);
+        rubd.setVisibility(View.VISIBLE);
+        ObjectAnimator animator1 = ObjectAnimator.ofFloat(rubf,"translationY",0f,-1800f);
+        ObjectAnimator animator2 = ObjectAnimator.ofFloat(rubf,"translationY",-1800f,0f);
+        ObjectAnimator animator3 = ObjectAnimator.ofFloat(rubd,"translationY",0f,1800f);
+        ObjectAnimator animator4 = ObjectAnimator.ofFloat(rubd,"translationY",1800f,0f);
+        ObjectAnimator animatorSearch = ObjectAnimator.ofFloat(mSearchView,"translationY",0f,-180f);
+        ObjectAnimator animatorBaseChar = ObjectAnimator.ofFloat(baseChar,"alpha",1f,0f);
+        animator1.setDuration(1);
+        animator2.setDuration(1000);
+        animator3.setDuration(1);
+        animator4.setDuration(1000);
+        animatorSearch.setDuration(1000);
+        animatorBaseChar.setDuration(1000);
+        AnimatorSet set1 = new AnimatorSet();
+        set1.play(animator1).with(animator2).with(animator3).with(animator4).with(animatorSearch).with(animatorBaseChar);
+        set1.start();
+        rubName.setText(rubbishSuggestion.getRubbishName());
+        ChangeByKind(rubbishSuggestion.getRubbishKind());
+
+        //这下面是只需要点击一次的关键，利用一个Flag来进行区分
+        clickFlag = true;
+        isHandleBack = true;    //在有这个界面的时候，才需要返回
+        mSearchView.setSearchText(rubbishSuggestion.getRubbishName());
+        mSearchView.clearSuggestions();
     }
 }
